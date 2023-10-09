@@ -1,11 +1,11 @@
+import NavBar from "@/components/ui/NavBar";
 import { Button } from "antd";
 
 const HomePage = () => {
   return (
     <div>
-      <h1>My home page</h1>
+      <NavBar />
       <Button type="primary">Button</Button>
-
     </div>
   );
 };
