@@ -5,7 +5,7 @@ const HomePage = () => {
   return (
     <div>
       <NavBar />
-      <Button type="primary">Button</Button>
+  
     </div>
   );
 };
