@@ -1,3 +1,4 @@
+import HeroSection from "@/components/HomePage/HeroSection";
 import NavBar from "@/components/NavBar";
 import Header from "@/components/Sheared/Header";
 
@@ -8,6 +9,7 @@ const HomePage = () => {
     <div>
       {/* <NavBar/> */}
       <Header />
+      <HeroSection/>
     </div>
   );
 };
