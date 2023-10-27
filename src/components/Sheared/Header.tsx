@@ -1,3 +1,4 @@
+"use client";
 import {
   LinkedinOutlined,
   FacebookOutlined,
@@ -6,6 +7,7 @@ import {
   MenuOutlined,
 } from "@ant-design/icons";
 import Link from "next/link";
+import { useState } from "react";
 
 const Header = () => {
   const NavItem = ["about", "book", "portfolio", "blog", "contact"];
@@ -15,6 +17,7 @@ const Header = () => {
     { Icon: InstagramOutlined },
     { Icon: GithubOutlined },
   ];
+  const [open, setOpen] = useState(false);
   return (
     <>
       <div className="bg-[#111]">
@@ -26,7 +29,7 @@ const Header = () => {
             Aali
           </Link>
 
-          <div className="md:hidden mr-3">
+          <div onClick={() => setOpen(!open)} className="md:hidden mr-3">
             <span className="text-[#fff]  text-[25px] md:text-[30px]  cursor-pointer hover:opacity-50 delay-150 transition-all">
               <MenuOutlined />
             </span>
@@ -36,10 +39,7 @@ const Header = () => {
             <ul className="list-none flex">
               {NavItem.map((Item) => (
                 <li key={Item} className=" cursor-pointer ">
-                  <span
-                    //  style={{border:'1px solid red'}}
-                    className="py-4 px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[18px] transition ease-linear delay-150 font-thin"
-                  >
+                  <span className="py-4 px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[18px] transition ease-linear delay-150 font-thin">
                     {Item}
                   </span>
                 </li>
@@ -50,7 +50,6 @@ const Header = () => {
               {SocialIcon.map((Item, i) => (
                 <span
                   key={i}
-                  // style={{ border: "1px solid red" }}
                   className="text-[#fff] text-[30px] p-2 xl:p-3 cursor-pointer hover:opacity-50 delay-150 transition-all"
                 >
                   <Item.Icon />
@@ -58,29 +57,16 @@ const Header = () => {
               ))}
             </div>
           </div>
-
-
-
-          
-
-
-
-
-
-
         </div>
-
-        <div
-           
-            className="flex flex-col items-center"
-          >
-            <ul  className="w-full list-none flex flex-col items-center">
+        {open && (
+          <div className="flex flex-col items-center">
+            <ul className="w-full list-none flex flex-col items-center">
               {NavItem.map((Item) => (
-                <li  key={Item} className="text-center  cursor-pointer w-full py-3 bg-[#222222] border-solid border border-b-[#363636]">
-                  <span
-                    //  style={{border:'1px solid red'}}
-                    className="py-4 px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[25px] transition ease-linear delay-150 font-thin"
-                  >
+                <li
+                  key={Item}
+                  className="text-center  cursor-pointer w-full py-3 bg-[#222222] border-solid border border-b-[#363636]"
+                >
+                  <span className="py-4 px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[25px] transition ease-linear delay-150 font-thin">
                     {Item}
                   </span>
                 </li>
@@ -91,7 +77,6 @@ const Header = () => {
               {SocialIcon.map((Item, i) => (
                 <span
                   key={i}
-                  // style={{ border: "1px solid red" }}
                   className="text-[#fff] text-[30px] p-2 xl:p-3 cursor-pointer hover:opacity-50 delay-150 transition-all"
                 >
                   <Item.Icon />
@@ -99,6 +84,7 @@ const Header = () => {
               ))}
             </div>
           </div>
+        )}
       </div>
     </>
   );
