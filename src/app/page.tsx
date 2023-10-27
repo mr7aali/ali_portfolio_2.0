@@ -1,11 +1,13 @@
-import NavBar from "@/components/ui/NavBar";
-import { Button } from "antd";
+import NavBar from "@/components/NavBar";
+import Header from "@/components/Sheared/Header";
+
+// import { motion } from "framer-motion";
 
 const HomePage = () => {
   return (
     <div>
-      <NavBar />
-  
+      {/* <NavBar/> */}
+      <Header />
     </div>
   );
 };
