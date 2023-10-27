@@ -1,3 +1,4 @@
+import Expertise from "@/components/HomePage/Expertise";
 import HeroSection from "@/components/HomePage/HeroSection";
 import NavBar from "@/components/NavBar";
 import Header from "@/components/Sheared/Header";
@@ -10,6 +11,7 @@ const HomePage = () => {
       {/* <NavBar/> */}
       <Header />
       <HeroSection/>
+      <Expertise/>
     </div>
   );
 };
