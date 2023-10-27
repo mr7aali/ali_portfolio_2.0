@@ -8,6 +8,7 @@ import {
 } from "@ant-design/icons";
 import Link from "next/link";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 const Header = () => {
   const NavItem = ["about", "book", "portfolio", "blog", "contact"];
@@ -38,11 +39,17 @@ const Header = () => {
           <div className="hidden md:flex items-center">
             <ul className="list-none flex">
               {NavItem.map((Item) => (
-                <li key={Item} className=" cursor-pointer ">
+                <motion.li 
+               
+                key={Item}
+
+                
+                className=" cursor-pointer "
+                >
                   <span className="py-4 px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[18px] transition ease-linear delay-150 font-thin">
                     {Item}
                   </span>
-                </li>
+                </motion.li>
               ))}
             </ul>
 
@@ -58,8 +65,23 @@ const Header = () => {
             </div>
           </div>
         </div>
+        {/* drop down menu */}
         {open && (
-          <div className="flex flex-col items-center">
+         <motion.div
+
+
+         initial={open ? "collapsed" : "open"}
+        animate={open ? "open" : "collapsed"}
+        variants={{
+          open: { height: "auto",overflow:"hidden" },
+          collapsed: { height: 0 },
+        }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+          
+         
+         
+           >
+           <div className="flex flex-col items-center md:hidden  w-full top-0">
             <ul className="w-full list-none flex flex-col items-center">
               {NavItem.map((Item) => (
                 <li
@@ -84,6 +106,7 @@ const Header = () => {
               ))}
             </div>
           </div>
+         </motion.div>
         )}
       </div>
     </>
