@@ -24,7 +24,7 @@ const Expertise = () => {
   ];
   return (
     <div className="mt-14 max-w-[1220px] mx-auto">
-      <h1 className="text-center text-[50px] font-bold font-serif ">
+      <h1 className="text-center text-[50px] font-bold font-serif mb-16">
         My Expertise
       </h1>
       <div
@@ -38,7 +38,7 @@ const Expertise = () => {
       >
         {Items.map((item, index) => (
           <div
-            key={item.title}
+            key={index}
             style={{
               borderRight: "5px solid #111",
               // border:'1px solid red'
