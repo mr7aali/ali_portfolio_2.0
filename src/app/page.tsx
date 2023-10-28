@@ -9,10 +9,10 @@ import Header from "@/components/Sheared/Header";
 const HomePage = () => {
   return (
     <div>
-      {/* <NavBar/>
+      
       <Header />
       <HeroSection/>
-      <Expertise/> */}
+      <Expertise/>
       <AboutMe/>
 
     </div>
