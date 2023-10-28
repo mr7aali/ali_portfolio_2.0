@@ -14,28 +14,37 @@ const ContactWithMe = () => {
         </p>
       </div>
 
-
-
-
       <div>
-        <form action="" method="get" className="flex flex-col px-4" style={{caretColor:"red"}}>
+        <form
+          action=""
+          method="get"
+          className="flex flex-col px-4"
+          style={{ caretColor: "red" }}
+        >
           <div className="">
-            <label htmlFor=""  className="uppercase text-[18px]">Name</label>
-            <input style={{caretColor:"red"}} type="text" className="w-full rounded-sm text-[18px] h-[24px] p-[12px] caret-slate-950" />
+            <label htmlFor="" className=" uppercase font-mono font-bold text-[20px]">
+              Name
+            </label>
+            <input
+              type="text"
+              required
+              className="w-full rounded-lg my-3 font-mono font-extrabold text-[18px] h-[60px] p-[12px]"
+            />
           </div>
-          <div className="pt-7">
-            <label htmlFor="" className="uppercase text-[18px]">Email</label>
-            <input type="text" className="w-full rounded-sm text-[18px] h-[24px] p-[12px]" />
+          <div className="pt-">
+            <label htmlFor="" className=" uppercase font-mono font-bold text-[20px]">
+              Email
+            </label>
+            <input
+              type="text"
+              required
+              className="w-full rounded-lg my-3 font-mono font-extrabold text-[18px] h-[60px] p-[12px]"
+            />
           </div>
-         
+
           {/* <textarea name="" id="" cols={30} rows={10}></textarea> */}
         </form>
       </div>
-
-
-
-
-
     </div>
   );
 };
