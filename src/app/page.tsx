@@ -17,6 +17,8 @@ const HomePage = () => {
       <AboutMe/>
       <ContactWithMe/>
 
+      <div className="mb-[100px]"></div>
+
     </div>
   );
 };
