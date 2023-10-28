@@ -69,6 +69,9 @@ const Header = () => {
             exit={{ height: 0, overflow: "visible" }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
+
+
+            
             <div
               className={`flex flex-col items-center md:hidden  w-full top-0`}
             >
@@ -96,6 +99,10 @@ const Header = () => {
                 ))}
               </div>
             </div>
+
+
+
+
           </motion.div>
           // <DropDownMenu/>
         )}

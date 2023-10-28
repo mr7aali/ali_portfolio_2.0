@@ -1,4 +1,5 @@
 import AboutMe from "@/components/HomePage/AboutMe";
+import ContactWithMe from "@/components/HomePage/Contact";
 import Expertise from "@/components/HomePage/Expertise";
 import HeroSection from "@/components/HomePage/HeroSection";
 import NavBar from "@/components/NavBar";
@@ -11,9 +12,10 @@ const HomePage = () => {
     <div>
       
       <Header />
-      <HeroSection/>
+      {/* <HeroSection/>
       <Expertise/>
-      <AboutMe/>
+      <AboutMe/> */}
+      <ContactWithMe/>
 
     </div>
   );

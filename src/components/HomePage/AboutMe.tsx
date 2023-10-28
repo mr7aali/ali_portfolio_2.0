@@ -17,7 +17,7 @@ const AboutMe = () => {
     "React",
     "NextJs",
     "GitHub",
-    ,
+  ,
     "NodeJs",
     "Express",
     "Prisma",
@@ -27,10 +27,11 @@ const AboutMe = () => {
     "MongoDB",
   ];
   return (
-    <div className="max-w-[1220px] mx-auto">
+   <div className="bg-slate-100">
+     <div className="max-w-[1220px] mx-auto ">
       <div>
         {/* Header */}
-        <h1 className="text-center text-[50px] font-bold font-serif mt-10">
+        <h1 className="text-center text-[50px] font-bold font-serif pt-10">
           About Me
         </h1>
         <p className="pt-5 text-[18px] px-5 lg:text-xl font-serif text-center opacity-70">
@@ -100,6 +101,7 @@ const AboutMe = () => {
 
       </div>
     </div>
+   </div>
   );
 };
 
