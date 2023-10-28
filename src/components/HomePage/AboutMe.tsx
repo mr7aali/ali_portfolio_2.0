@@ -27,7 +27,7 @@ const AboutMe = () => {
     "MongoDB",
   ];
   return (
-   <div className="bg-slate-100">
+   <div id="ABOUT" className="bg-slate-100">
      <div className="max-w-[1220px] mx-auto ">
       <div>
         {/* Header */}

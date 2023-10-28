@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
+import {GrResume} from "react-icons/gr";
 const HeroSection = () => {
   return (
     <div className="max-w-[1040px] mx-auto sm:mt-10 ">
@@ -29,19 +30,23 @@ const HeroSection = () => {
           </p>
 
           <div className="grid grid-cols-2 gap-2 mt-10">
-            <span
+            <a
+            href="#CONTACT"
+            
               style={{ border: "3px solid #111" }}
               className="no-underline p-2 w-full block hover:bg-slate-400 transition-all  delay-100  bg-slate-300  font-semibold rounded-md cursor-pointer uppercase text-center"
             >
               {/* hover:bg-stone-400 */}
-              See Service
-            </span>
-            <span
+              CONTACT
+            </a>
+            <a
+            target="_blank"
+            href="https://drive.google.com/file/d/1WBsVIWXOKahIR3xDql8yvpgeKAsdATeN/view?usp=drive_link"
               style={{ border: "3px solid #111" }}
-              className="no-underline p-2 w-full block hover:bg-slate-400 rounded-md cursor-pointer font-semibold bg-slate-300 uppercase text-center"
+              className="no-underline p-2 w-full text-[#000] block hover:bg-slate-400 rounded-md cursor-pointer font-semibold bg-slate-300 uppercase text-center"
             >
-              See CV
-            </span>
+              See CV 
+            </a>
           </div>
         </div>
         <div

@@ -11,8 +11,15 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 
+
 const Header = () => {
-  const NavItem = ["about", "book", "portfolio", "blog", "contact"];
+  const NavItem = [
+    {text:"about", path:"#ABOUT"},
+    {text:"book", path:"#"},
+    {text:"portfolio",path:"#"},
+    {text:"blog", path:"#"},
+    {text:"contact",path:"#CONTACT"},
+    ];
   const SocialIcon = [
     { Icon: LinkedinOutlined },
     { Icon: FacebookOutlined },
@@ -40,11 +47,11 @@ const Header = () => {
           <div className="hidden md:flex items-center">
             <ul className="list-none flex">
               {NavItem.map((Item) => (
-                <motion.li key={Item} className=" cursor-pointer ">
-                  <span className="py-4 px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[18px] transition ease-linear delay-150 font-thin">
-                    {Item}
-                  </span>
-                </motion.li>
+                <li key={Item.text} className=" cursor-pointer ">
+                  <a href={Item.path}  className="py-4 no-underline px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[18px] transition ease-linear delay-150 font-thin">
+                    {Item.text}
+                  </a>
+                </li>
               ))}
             </ul>
 
@@ -78,12 +85,12 @@ const Header = () => {
               <ul className="w-full list-none flex flex-col items-center">
                 {NavItem.map((Item) => (
                   <li
-                    key={Item}
+                    key={Item.text}
                     className="text-center  cursor-pointer w-full py-3 bg-[#222222] border-solid border border-b-[#363636]"
                   >
-                    <span className="py-4 px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[25px] transition ease-linear delay-150 font-thin">
-                      {Item}
-                    </span>
+                    <a href={Item.path}  className="py-4 no-underline px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[25px] transition ease-linear delay-150 font-thin">
+                      {Item.text}
+                    </a>
                   </li>
                 ))}
               </ul>

@@ -3,6 +3,8 @@ import {FiMail} from 'react-icons/fi';
 const ContactWithMe = () => {
   return (
     <div
+    id="CONTACT"
+    
       // style={{ border: "1px solid red" }}
       className="max-w-[1280px] mt-16 mx-auto grid sm:grid-cols-2 px-5"
     >
