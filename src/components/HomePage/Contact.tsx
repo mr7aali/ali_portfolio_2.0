@@ -36,7 +36,7 @@ const ContactWithMe = () => {
     trigger
   } = useForm<IFormInputs>();
 
- console.log(errors);
+
  
 
   return (
