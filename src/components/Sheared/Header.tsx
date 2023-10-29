@@ -21,10 +21,10 @@ const Header = () => {
     {text:"contact",path:"#CONTACT"},
     ];
   const SocialIcon = [
-    { Icon: LinkedinOutlined },
-    { Icon: FacebookOutlined },
-    { Icon: InstagramOutlined },
-    { Icon: GithubOutlined },
+    { Icon: LinkedinOutlined ,path:"https://www.linkedin.com/in/mr7aali/"},
+    { Icon: FacebookOutlined ,path:"https://www.facebook.com/mr07aali/"},
+    { Icon: InstagramOutlined ,path:"https://www.instagram.com/mr7aali/"},
+    { Icon: GithubOutlined ,path:"https://github.com/mr7aali"},
   ];
   const [open, setOpen] = useState(false);
   return (
@@ -57,12 +57,14 @@ const Header = () => {
 
             <div className="ml-10">
               {SocialIcon.map((Item, i) => (
-                <span
+                <a
                   key={i}
-                  className="text-[#fff] text-[30px] p-2 xl:p-3 cursor-pointer hover:opacity-50 delay-150 transition-all"
+                  href={Item.path}
+                  target="_blank"
+                  className="text-[#fff] no-underline text-[30px] p-2 xl:p-3 cursor-pointer hover:opacity-50 delay-150 transition-all"
                 >
                   <Item.Icon />
-                </span>
+                </a>
               ))}
             </div>
           </div>
@@ -82,7 +84,7 @@ const Header = () => {
             <div
               className={`flex flex-col items-center md:hidden  w-full top-0`}
             >
-              <ul className="w-full list-none flex flex-col items-center">
+              {/* <ul className="w-full list-none flex flex-col items-center">
                 {NavItem.map((Item) => (
                   <li
                     key={Item.text}
@@ -93,16 +95,30 @@ const Header = () => {
                     </a>
                   </li>
                 ))}
-              </ul>
-
+              </ul> */}
+              <div className="w-full list-none flex flex-col items-center">
+                {NavItem.map((Item) => (
+                  <a
+                    key={Item.text}
+                    style={{border:'1px solid #363636'}}
+                    className="text-center uppercase cursor-pointer w-full  bg-[#222222] bord er-solid bo rder  py-4 no-underline px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[18px] transition ease-linear delay-75 font-thin"
+                  >
+                    
+                      {Item.text}
+                   
+                  </a>
+                ))}
+              </div>
               <div className="bg-[#222222] w-full justify-center flex py-3">
                 {SocialIcon.map((Item, i) => (
-                  <span
+                  <a
                     key={i}
-                    className="text-[#fff] text-[30px] p-2 xl:p-3 cursor-pointer hover:opacity-50 delay-150 transition-all"
+                    href={Item.path}
+                    target="_blank"
+                    className="text-[#fff] no-underline text-[30px] p-2 xl:p-3 cursor-pointer hover:opacity-50 delay-150 transition-all"
                   >
                     <Item.Icon />
-                  </span>
+                  </a>
                 ))}
               </div>
             </div>
