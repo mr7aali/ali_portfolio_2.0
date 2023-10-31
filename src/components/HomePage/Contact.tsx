@@ -2,7 +2,6 @@
 import { BsRocketTakeoff } from "react-icons/bs";
 import { FiMail } from "react-icons/fi";
 import { BiErrorCircle } from "react-icons/bi";
-import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 interface IFormInputs {
