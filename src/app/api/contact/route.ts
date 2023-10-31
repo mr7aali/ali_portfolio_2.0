@@ -2,7 +2,7 @@
 // import { transporter } from "@/utils/nodemailer";
 import nodemailer from "nodemailer";
 export async function GET(request: Request) {
-    return Response.json({ ali: "a;i" })
+    return Response.json({ server: "server is runnig" })
 }
 export async function POST(request: Request) {
     const email = process.env.EMAIL;
@@ -23,8 +23,6 @@ export async function POST(request: Request) {
                 pass: pass
             }
         });
-
-
 
         const htmlEmailBody = `
         <!DOCTYPE html>

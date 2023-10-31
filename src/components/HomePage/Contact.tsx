@@ -24,7 +24,7 @@ const ContactWithMe = () => {
 
   
 const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
-  const res = await fetch("http://localhost:3000/api/contact", {
+  const res = await fetch("https://mr7aali.vercel.app/api/contact", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
