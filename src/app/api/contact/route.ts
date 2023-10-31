@@ -1,25 +1,66 @@
-import { mailOption } from './../../../utils/nodemailer';
-import { transporter } from "@/utils/nodemailer";
 
+// import { transporter } from "@/utils/nodemailer";
+import nodemailer from "nodemailer";
 export async function GET(request: Request) {
     return Response.json({ ali: "a;i" })
 }
 export async function POST(request: Request) {
-
+    const email = process.env.EMAIL;
+    const pass = process.env.PASS;
 
     try {
-        // const data = request.json();
+        const data = await request.json();
 
-     const data =   await transporter.sendMail({
-            ...mailOption,
-            subject: "This is subject",
-            text: "This is test string",
-            html: "<h1>Test title</h1><p>Some body text</p>"
+
+
+        const transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 465,
+            secure: true,
+            // service: "gmail",
+            auth: {
+                user: email,
+                pass: pass
+            }
+        });
+
+
+
+        const htmlEmailBody = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>This is the Email Subject</title>
+        </head>
+        <body>
+            <div>
+                <h1>Hello, my name is ${data.name}</h1>
+                <p>${data.email}</p>
+                <h3>${data.message}.</h3>
+               
+            </div>
+        </body>
+        </html>
+    `;
+
+
+
+
+        const result = await transporter.sendMail({
+
+
+            from: data.email,
+            to: process.env.EMAIL,
+            subject: `${data.name} have send you mail with ${data.email} address.`,
+            text: data.message,
+            html: htmlEmailBody
         })
-        return Response.json(data)
+        return Response.json({ success: true });
+
+
     } catch (err) {
         console.log(err);
-        return Response.json(err)
+        return Response.json({ success: false })
     }
 
 

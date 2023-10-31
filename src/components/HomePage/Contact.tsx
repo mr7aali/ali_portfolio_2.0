@@ -2,43 +2,44 @@
 import { BsRocketTakeoff } from "react-icons/bs";
 import { FiMail } from "react-icons/fi";
 import { BiErrorCircle } from "react-icons/bi";
-import {useState} from "react"
+import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 interface IFormInputs {
   name: string;
   email: string;
-  message:string
+  message: string;
 }
 
-
-
-
-
-
-
-
-
-
-
-const onSubmit: SubmitHandler<IFormInputs> = (data) => {
-    
-  console.log(data);
-  
-}
 
 const ContactWithMe = () => {
- 
   const {
     register,
     formState: { errors },
     handleSubmit,
-    trigger
+    trigger,
+    reset
   } = useForm<IFormInputs>();
 
 
+  
+const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
+  const res = await fetch("http://localhost:3000/api/contact", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: data.name,
+      email: data.email,
+      message: data.message,
+    }),
+  });
+  const result = await res.json();
+  reset();
+  console.log(result.success);
  
-
+};
   return (
     <div
       id="CONTACT"
@@ -78,17 +79,19 @@ const ContactWithMe = () => {
               Your Name
             </label>
             <input
-             {...register("name", { required: true ,})}
-             onBlur={()=>trigger("name")}
-             aria-invalid={errors.name ? "true" : "false"} 
-              type="text" 
-              
-            
+              {...register("name", { required: true })}
+              onBlur={() => trigger("name")}
+              aria-invalid={errors.name ? "true" : "false"}
+              type="text"
               placeholder="Enter Your Name"
               className="w-full border-[2px] focus-within:border-3  focus:border-[#5252ff]  border-[black] outline-none  my-3 font-mono font-extrabold text-[18px] h-[60px] p-[12px]"
             />
-            
-            { errors.name &&  <p className="text-red-600 mb-2 ml-0 font-serif text-[12px] font-semibold flex items-center"><BiErrorCircle className="mr-2"/> Name cannot be empty</p>}
+
+            {errors.name && (
+              <p className="text-red-600 mb-2 ml-0 font-serif text-[12px] font-semibold flex items-center">
+                <BiErrorCircle className="mr-2" /> Name cannot be empty
+              </p>
+            )}
           </div>
           <div className="pt-">
             <label
@@ -98,17 +101,19 @@ const ContactWithMe = () => {
               Your Email address
             </label>
             <input
-            {...register("email", { required: true })}
-            onBlur={()=>trigger("email")}
-            aria-invalid={errors.email ? "true" : "false"} 
+              {...register("email", { required: true })}
+              onBlur={() => trigger("email")}
+              aria-invalid={errors.email ? "true" : "false"}
               type="email"
               placeholder="Enter Your Email"
-              
               // style={{border:"2px solid black"}}
               className="w-full border-[2px] focus-within:border-3  focus:border-[#5252ff]  border-[black] outline-none  my-3 font-mono font-extrabold text-[18px] h-[60px] p-[12px]"
             />
-             { errors.email &&  <p className="text-red-600 mb-2 ml-0 font-serif text-[12px] font-semibold flex items-center"><BiErrorCircle className="mr-2"/> Invalid Email</p>}
-             
+            {errors.email && (
+              <p className="text-red-600 mb-2 ml-0 font-serif text-[12px] font-semibold flex items-center">
+                <BiErrorCircle className="mr-2" /> Invalid Email
+              </p>
+            )}
           </div>
           <div className="pt-">
             <label
@@ -118,16 +123,20 @@ const ContactWithMe = () => {
               Type Your MESSAGE
             </label>
             <textarea
-            {...register("message", { required: true })}
-            onBlur={()=>trigger("message")}
-            aria-invalid={errors.message ? "true" : "false"} 
+              {...register("message", { required: true })}
+              onBlur={() => trigger("message")}
+              aria-invalid={errors.message ? "true" : "false"}
               name="message"
               id=""
               placeholder="Type message..."
               className="w-full border-[2px] focus-within:border-3  focus:border-[#5252ff]  border-[black] outline-none  my-3 font-mono font-extrabold text-[18px] h-[120px] p-[12px]"
             ></textarea>
-             
-             { errors.message &&  <p className="text-red-600 mb-2 ml-0 font-serif text-[12px] font-semibold flex items-center"><BiErrorCircle className="mr-2"/> Message box cannot be empty</p>}
+
+            {errors.message && (
+              <p className="text-red-600 mb-2 ml-0 font-serif text-[12px] font-semibold flex items-center">
+                <BiErrorCircle className="mr-2" /> Message box cannot be empty
+              </p>
+            )}
           </div>
           <div className="flex  w-full items-center">
             <p className="flex-1 text-[18px]  lg:text-[20px] hidden font-mono lg:flex items-center ">
@@ -149,7 +158,6 @@ const ContactWithMe = () => {
                 <BsRocketTakeoff />
               </span>
             </button>
-
           </div>
         </form>
 
