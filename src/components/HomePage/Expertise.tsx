@@ -1,25 +1,27 @@
 import { MobileOutlined } from "@ant-design/icons";
-import {FaReact} from "react-icons/fa"
-import {SiPostman} from "react-icons/si"
+import { FaReact } from "react-icons/fa";
+import { SiPostman } from "react-icons/si";
 const Expertise = () => {
   const Items = [
     {
-      title: "Software Development",
-      description:
-        "Experienced in both functional and OOP: Dart, Python, Java, JavaScript, TypeScript.",
-      Icon: MobileOutlined,
-    },
-    {
       title: "Frontend Dev React, NextJS",
       description:
-        "Passionate about UI/UX. Over 4 years of development experience in HTML, CSS, JS, React and NextJS frameworks.",
+        // "Passionate about UI/UX. Over 4 years of development experience in HTML, CSS, JS, React and NextJS frameworks.",
+        "Experienced Frontend Developer proficient in React and Next.js. Skilled in creating high-performance web applications with modern UI/UX design.",
       Icon: FaReact,
     },
     {
-      title: "Full-Stack Developer",
+      title: "Full-Stack Web Developer",
       description:
-        "Skilled in developing hybrid mobile apps and cross-platform solutions using the Flutter framework.",
+        "I'm skilled in Next.js and React for front-end, and PostgreSQL, MongoDB, for back-end development. Adept at building robust web applications and ensuring seamless user experiences.",
+      // "Skilled in developing hybrid mobile apps and cross-platform solutions using the Flutter framework.",
       Icon: SiPostman,
+    },
+    {
+      title: "Problem Solving.",
+      description:
+        "Experienced in both functional and OOP: C,C++, Python, Java, JavaScript, TypeScript.",
+      Icon: MobileOutlined,
     },
   ];
   return (
@@ -32,7 +34,7 @@ const Expertise = () => {
           borderTop: "5px solid #111",
           borderBottom: "5px solid #111",
           borderLeft: "5px solid #111",
-        //   border:'1px solid red'
+          //   border:'1px solid red'
         }}
         className=" grid grid-cols-1 md:grid-cols-3 my-5 mx-2"
       >
@@ -43,26 +45,24 @@ const Expertise = () => {
               borderRight: "5px solid #111",
               // border:'1px solid red'
             }}
-            
-
             className="py-3 lg:py-8 px-2"
           >
-            <div  className="flex items-center">
-              <span  className="text-[50px] px-2 lg:px-5 text">{<item.Icon className="" />}</span>
+            <div className="flex items-center">
+              <span className="text-[50px] px-2 lg:px-5 text">
+                {<item.Icon className="" />}
+              </span>
               <h3 className="text-[25px] lg:text-[30px]">{item.title}</h3>
             </div>
 
-
-
             <div className="ml-2">
               <p className="font-bold opacity-50 py-2 font-serif">{"<h3>"}</p>
-              <div style={{borderLeft:'3px solid #111'}} className="ml-4">
-              <span className=" lg:text-[18px] block p-4 font-mono font-extrabold">{item.description}</span>
+              <div style={{ borderLeft: "3px solid #111" }} className="ml-4">
+                <span className=" lg:text-[17px] block p-4 font-mono font-extrabold">
+                  {item.description}
+                </span>
               </div>
               <p className="font-bold opacity-50 py-2 font-serif">{"</h3>"}</p>
             </div>
-
-
           </div>
         ))}
       </div>
