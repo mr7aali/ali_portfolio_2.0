@@ -3,6 +3,7 @@ import { BsRocketTakeoff } from "react-icons/bs";
 import { FiMail } from "react-icons/fi";
 import { BiErrorCircle } from "react-icons/bi";
 import { useForm, SubmitHandler } from "react-hook-form";
+import SectionTitle from "../SectionTitle";
 
 interface IFormInputs {
   name: string;
@@ -10,35 +11,31 @@ interface IFormInputs {
   message: string;
 }
 
-
 const ContactWithMe = () => {
   const {
     register,
     formState: { errors },
     handleSubmit,
     trigger,
-    reset
+    reset,
   } = useForm<IFormInputs>();
 
-
-  
-const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
-  const res = await fetch("https://mr7aali.vercel.app/api/contact", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      name: data.name,
-      email: data.email,
-      message: data.message,
-    }),
-  });
-  const result = await res.json();
-  reset();
-  console.log(result.success);
- 
-};
+  const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
+    const res = await fetch("https://mr7aali.vercel.app/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        message: data.message,
+      }),
+    });
+    const result = await res.json();
+    reset();
+    console.log(result.success);
+  };
   return (
     <div
       id="CONTACT"
@@ -46,11 +43,8 @@ const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
       className="max-w-[1280px] mt-16 mx-auto grid sm:grid-cols-2 px-5"
     >
       <div className="mb-8">
-        <div className="mb-5">
-          <small className="bg-[#222222] text-[#fff]  px-4 py-3 rounded-3xl ">
-            CONTACT
-          </small>
-        </div>
+        <SectionTitle title={"CONTACT"} />
+
         <h1 className="font-bold text-[45px] font-serif py-2">
           Got a problem to solve?
         </h1>

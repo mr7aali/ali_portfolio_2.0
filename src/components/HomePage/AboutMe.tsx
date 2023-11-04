@@ -1,3 +1,5 @@
+import SectionTitle from "../SectionTitle";
+
 /* eslint-disable react/no-unescaped-entities */
 const AboutMe = () => {
   const skills = [
@@ -27,10 +29,14 @@ const AboutMe = () => {
   ];
   return (
     <div id="ABOUT" className="bg-slate-100">
-      <div className="max-w-[1220px] mx-auto ">
-        <div>
+      <div
+        // style={{ border: "1px solid red" }}
+        className="max-w-[1220px] mx-auto "
+      >
+        <div className="pt-10" >
+          <SectionTitle title={"ABOUT ME"} />
           {/* Header */}
-          <h1 className="text-center text-[50px] font-bold font-serif pt-10">
+          <h1 className="text-center text-[50px] font-bold font-serif">
             About Me
           </h1>
           <p className="pt-5 text-[18px] px-5 lg:text-xl font-serif text-center opacity-70">

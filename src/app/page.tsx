@@ -10,12 +10,12 @@ const Header = dynamic(() => import("@/components/Sheared/Header"));
 const HomePage = () => {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <HeroSection />
       <Expertise />
       <AboutMe />
       <ContactWithMe />
-      <Footer />
+      {/* <Footer /> */}
 
       {/* <div className="mb-[100px]"></div> */}
     </div>
