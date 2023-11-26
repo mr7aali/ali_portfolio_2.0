@@ -4,6 +4,8 @@ import { FiMail } from "react-icons/fi";
 import { BiErrorCircle } from "react-icons/bi";
 import { useForm, SubmitHandler } from "react-hook-form";
 import SectionTitle from "../SectionTitle";
+import { useEffect } from "react";
+import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 
 interface IFormInputs {
   name: string;
@@ -36,7 +38,19 @@ const ContactWithMe = () => {
     reset();
     console.log(result.success);
   };
+
+
+
+
+
+
+
+
+
+
   return (
+
+    
     <div
       id="CONTACT"
       // style={{ border: "1px solid red" }}
@@ -157,6 +171,8 @@ const ContactWithMe = () => {
         {/* //! form end */}
       </div>
     </div>
+   
+
   );
 };
 

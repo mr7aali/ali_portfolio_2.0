@@ -9,14 +9,14 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
+import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 const Header = () => {
   const NavItem = [
-    { text: "about", path: "#ABOUT" },
+    { text: "about", path: "ABOUT" },
     { text: "book", path: "#" },
     { text: "portfolio", path: "#" },
     { text: "blog", path: "#" },
-    { text: "contact", path: "#CONTACT" },
+    { text: "contact", path: "CONTACT" },
   ];
   const SocialIcon = [
     { Icon: LinkedinOutlined, path: "https://www.linkedin.com/in/mr7aali/" },
@@ -46,12 +46,16 @@ const Header = () => {
             <ul className="list-none flex">
               {NavItem.map((Item) => (
                 <li key={Item.text} className=" cursor-pointer ">
-                  <a
+                  <ScrollLink
+                    to={Item.path}
+                    smooth={true}
+                    duration={500}
+                    offset={-100}
                     href={Item.path}
                     className="py-4 no-underline px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[18px] transition ease-linear delay-150 font-thin"
                   >
                     {Item.text}
-                  </a>
+                  </ScrollLink>
                 </li>
               ))}
             </ul>
@@ -74,11 +78,10 @@ const Header = () => {
         <AnimatePresence>
           {open && (
             <motion.div
-             
               initial={{ height: 0, overflow: "visible" }}
               animate={{ height: "auto", overflow: "hidden" }}
-              exit={{ height: 0,}}
-              transition={{ duration: 0.5, }}
+              exit={{ height: 0 }}
+              transition={{ duration: 0.5 }}
             >
               <div
                 className={`flex flex-col items-center md:hidden  w-full top-0`}
