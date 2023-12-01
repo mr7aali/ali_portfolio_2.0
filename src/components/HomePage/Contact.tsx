@@ -4,8 +4,7 @@ import { FiMail } from "react-icons/fi";
 import { BiErrorCircle } from "react-icons/bi";
 import { useForm, SubmitHandler } from "react-hook-form";
 import SectionTitle from "../SectionTitle";
-import { useEffect } from "react";
-import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface IFormInputs {
   name: string;

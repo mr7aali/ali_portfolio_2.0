@@ -9,13 +9,14 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
+import { Link as ScrollLink } from "react-scroll";
+
 const Header = () => {
   const NavItem = [
     { text: "about", path: "ABOUT" },
-    { text: "book", path: "#" },
-    { text: "portfolio", path: "#" },
-    { text: "blog", path: "#" },
+    // { text: "book", path: "#" },
+    { text: "portfolio", path: "ABOUT" },
+    { text: "dashboard", path: "#" },
     { text: "contact", path: "CONTACT" },
   ];
   const SocialIcon = [
@@ -27,7 +28,16 @@ const Header = () => {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <div className="bg-[#111]">
+      <motion.div
+
+        initial={{ y: "-100%", opacity:.4 }}
+        animate={{ y: "0",opacity:1 }}
+        transition={{
+          duration: 0.3,
+        }}
+
+        className="bg-[#111]"
+      >
         <div className="max-w-[1040px] mx-auto flex py-6 items-center">
           <Link
             href={"/"}
@@ -37,9 +47,7 @@ const Header = () => {
           </Link>
 
           <div onClick={() => setOpen(!open)} className="md:hidden mr-3">
-            <span className="text-[#fff]  text-[25px] md:text-[30px]  cursor-pointer hover:opacity-50 delay-150 transition-all">
-              <MenuOutlined />
-            </span>
+            <MenuOutlined className="text-[#fff]  text-[25px] md:text-[30px]  cursor-pointer hover:opacity-50 delay-150 transition-all" />
           </div>
 
           <div className="hidden md:flex items-center">
@@ -52,7 +60,7 @@ const Header = () => {
                     duration={500}
                     offset={-100}
                     href={Item.path}
-                    className="py-4 no-underline px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[18px] transition ease-linear delay-150 font-thin"
+                    className="py-4 no-underline uppercase px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[15px] lg:text-[18px] transition ease-linear font-medium delay-150 "
                   >
                     {Item.text}
                   </ScrollLink>
@@ -60,7 +68,7 @@ const Header = () => {
               ))}
             </ul>
 
-            <div className="ml-10">
+            <div className="lg:ml-10">
               {SocialIcon.map((Item, i) => (
                 <a
                   key={i}
@@ -86,27 +94,20 @@ const Header = () => {
               <div
                 className={`flex flex-col items-center md:hidden  w-full top-0`}
               >
-                {/* <ul className="w-full list-none flex flex-col items-center">
-                {NavItem.map((Item) => (
-                  <li
-                    key={Item.text}
-                    className="text-center  cursor-pointer w-full py-3 bg-[#222222] border-solid border border-b-[#363636]"
-                  >
-                    <a href={Item.path}  className="py-4 no-underline px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[25px] transition ease-linear delay-150 font-thin">
-                      {Item.text}
-                    </a>
-                  </li>
-                ))}
-              </ul> */}
                 <div className="w-full list-none flex flex-col items-center">
                   {NavItem.map((Item) => (
-                    <a
+                    <ScrollLink
+                      onClick={() => setOpen(!open)}
+                      to={Item.path}
+                      smooth={true}
+                      duration={500}
+                      offset={-100}
                       key={Item.text}
                       style={{ border: "1px solid #363636" }}
                       className="text-center uppercase cursor-pointer w-full  bg-[#222222] bord er-solid bo rder  py-4 no-underline px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[18px] transition ease-linear delay-75 font-thin"
                     >
                       {Item.text}
-                    </a>
+                    </ScrollLink>
                   ))}
                 </div>
                 <div className="bg-[#222222] w-full justify-center flex py-3">
@@ -123,10 +124,9 @@ const Header = () => {
                 </div>
               </div>
             </motion.div>
-            // <DropDownMenu/>
           )}
         </AnimatePresence>
-      </div>
+      </motion.div>
     </>
   );
 };
