@@ -37,9 +37,10 @@ const Header = () => {
           </Link>
 
           <div onClick={() => setOpen(!open)} className="md:hidden mr-3">
-            <span className="text-[#fff]  text-[25px] md:text-[30px]  cursor-pointer hover:opacity-50 delay-150 transition-all">
+            {/* <span className="text-[#fff]  text-[25px] md:text-[30px]  cursor-pointer hover:opacity-50 delay-150 transition-all">
               <MenuOutlined />
-            </span>
+            </span> */}
+            <MenuOutlined  className="text-[#fff]  text-[25px] md:text-[30px]  cursor-pointer hover:opacity-50 delay-150 transition-all"/>
           </div>
 
           <div className="hidden md:flex items-center">
@@ -86,18 +87,7 @@ const Header = () => {
               <div
                 className={`flex flex-col items-center md:hidden  w-full top-0`}
               >
-                {/* <ul className="w-full list-none flex flex-col items-center">
-                {NavItem.map((Item) => (
-                  <li
-                    key={Item.text}
-                    className="text-center  cursor-pointer w-full py-3 bg-[#222222] border-solid border border-b-[#363636]"
-                  >
-                    <a href={Item.path}  className="py-4 no-underline px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[25px] transition ease-linear delay-150 font-thin">
-                      {Item.text}
-                    </a>
-                  </li>
-                ))}
-              </ul> */}
+               
                 <div className="w-full list-none flex flex-col items-center">
                   {NavItem.map((Item) => (
                     <a
@@ -123,7 +113,7 @@ const Header = () => {
                 </div>
               </div>
             </motion.div>
-            // <DropDownMenu/>
+           
           )}
         </AnimatePresence>
       </div>
