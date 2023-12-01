@@ -1,6 +1,9 @@
+"use client";
 import { MobileOutlined } from "@ant-design/icons";
 import { FaReact } from "react-icons/fa";
 import { SiPostman } from "react-icons/si";
+import { motion, AnimatePresence } from "framer-motion";
+
 const Expertise = () => {
   const Items = [
     {
@@ -25,7 +28,15 @@ const Expertise = () => {
     },
   ];
   return (
-    <div className="mt-14 max-w-[1220px] mx-auto">
+    <AnimatePresence>
+
+<motion.div
+    initial={{ y: "-100%", opacity: 0 }}
+          animate={{ y: "0", opacity: 1 }}
+          transition={{
+            duration: 0.5,
+          }}
+    className="mt-14 max-w-[1220px] mx-auto">
       <h1 className="text-center text-[50px] font-bold font-serif mb-16">
         My Expertise
       </h1>
@@ -66,7 +77,9 @@ const Expertise = () => {
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
+    </AnimatePresence>
+    
   );
 };
 
