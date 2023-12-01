@@ -33,7 +33,7 @@ const Header = () => {
         initial={{ y: "-100%", opacity:.4 }}
         animate={{ y: "0",opacity:1 }}
         transition={{
-          duration: 0.3,
+          duration: 0.5,
         }}
 
         className="bg-[#111]"
