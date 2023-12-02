@@ -15,7 +15,7 @@ const Header = () => {
   const NavItem = [
     { text: "about", path: "ABOUT" },
     // { text: "book", path: "#" },
-    { text: "portfolio", path: "ABOUT" },
+    { text: "portfolio", path: "PORTFOLIO" },
     { text: "dashboard", path: "#" },
     { text: "contact", path: "CONTACT" },
   ];
