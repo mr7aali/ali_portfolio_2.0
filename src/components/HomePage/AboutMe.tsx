@@ -28,12 +28,13 @@ const AboutMe = () => {
     "MongoDB",
   ];
   return (
-    <div id="ABOUT" className="bg-slate-100">
+    // slate-100
+    <div id="ABOUT" className="bg-[#fafafa] px-5">
       <div
         // style={{ border: "1px solid red" }}
         className="max-w-[1220px] mx-auto "
       >
-        <div className="pt-10" >
+        <div className="pt-10">
           <SectionTitle title={"ABOUT ME"} />
           {/* Header */}
           <h1 className="text-center text-[50px] font-bold font-serif">
@@ -50,7 +51,7 @@ const AboutMe = () => {
         <div className="grid md:grid-cols-2 mt-20">
           {/* hero  */}
 
-          <div className="px-5 mb-5 md:mb-0">
+          <div className=" mb-5 md:mb-0">
             <h3 className="mb-10 text-[35px] lg:text-[40px] font-serif text-center">
               Get to know me!
             </h3>
@@ -83,7 +84,7 @@ const AboutMe = () => {
             </p>
           </div>
 
-          <div className="px-5">
+          <div className="px-2">
             <h3 className="mb-10 text-[35px text-[40px] font-serif text-center">
               My Skills!
             </h3>

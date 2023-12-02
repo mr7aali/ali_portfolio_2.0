@@ -2,9 +2,10 @@
 "use client";
 import { Link as ScrollLink } from "react-scroll";
 import { motion } from "framer-motion";
-import { Typewriter } from "react-simple-typewriter";
-import { inflate } from "zlib";
+import { Typewriter, useTypewriter } from "react-simple-typewriter";
+
 const HeroSection = () => {
+  
   return (
     <div className="max-w-[1040px] mx-auto sm:mt-10 ">
       <div className="flex flex-col-reverse sm:flex-row">
@@ -16,11 +17,14 @@ const HeroSection = () => {
           }}
           className="pl-5"
         >
+        
           <h1 className="text-[30px] lg:text-[50px] font-extrabold font-sans">
             {/* Discover my Amazing Art Space!... */}
             Hello, I am
-            <p style={{ fontWeight: "bold" }} className="text-[40px] lg:text-[57px] font-thin">
-             
+            <p
+              style={{ fontWeight: "bold" }}
+              className="text-[40px] lg:text-[57px] font-thin"
+            >
               <Typewriter
                 words={[
                   "Web Developer",
@@ -35,10 +39,10 @@ const HeroSection = () => {
                 typeSpeed={70}
                 deleteSpeed={50}
                 delaySpeed={1000}
+
                 // onLoopDone={handleDone}
                 // onType={handleType}
               />
-
             </p>
           </h1>
           <p className="pt-5 text-[16px] lg:text-xl font-serif text-justify sm:text-left">
