@@ -15,7 +15,8 @@ const HeroSection = () => {
           transition={{
             duration: 0.5,
           }}
-          className="pl-5"
+         
+          className="px-5  sm:px-3"
         >
         
           <h1 className="text-[30px] lg:text-[50px] font-extrabold font-sans">

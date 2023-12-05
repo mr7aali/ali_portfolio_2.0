@@ -1,9 +1,17 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-const ProjectCard = () => {
+const ProjectCard = ({
+  title,
+  subtitle,
+  imageLink,
+}: {
+  title: string;
+  subtitle: string;
+  imageLink: string;
+}) => {
   return (
-    <div>
+    <a  href="https://star-tech.vercel.app/" target="_blank" className="no-underline text-black">
       <motion.div
         whileHover={{
           boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.2)",
@@ -16,17 +24,17 @@ const ProjectCard = () => {
             width={314}
             height={184}
             className="w-full"
-            src="https://www.adhamdannaway.com/wp-content/uploads/2022/12/feature-ui-design-book.jpg"
+            src={imageLink}
             alt=""
             // srcset=""
           />
         </div>
         <div className="my-2 px-2">
-          <h3 className="font-thin">My UI Design book</h3>
-          <small className="font-thin text-sm">Book</small>
+          <h3 className="font-thin text-black">{title}</h3>
+          <small className="font-thin text-sm text-black">{subtitle}</small>
         </div>
       </motion.div>
-    </div>
+    </a>
   );
 };
 

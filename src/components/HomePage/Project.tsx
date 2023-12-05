@@ -17,10 +17,18 @@ const Project = () => {
           </div>
 
           <div className="flex flex-wrap gap-5 my-11 justify-center">
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-            
+            <ProjectCard
+              title="Comming..."
+              subtitle="Wait"
+              imageLink="https://www.adhamdannaway.com/wp-content/uploads/2022/12/feature-ui-design-book.jpg"
+            />
+            <ProjectCard
+              title="E-commerce Full-stack Website"
+              subtitle="Start Tech"
+              imageLink="https://i.ibb.co/bNp212J/Web-capture-6-12-2023-03911-localhost.jpg"
+            />
+            {/* <ProjectCard />
+            <ProjectCard /> */}
           </div>
         </div>
       </div>
