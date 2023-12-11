@@ -3,6 +3,9 @@
 import nodemailer from "nodemailer";
 export async function GET(request: Request) {
     return Response.json({ server: "server is runnig" })
+
+
+    
 }
 export async function POST(request: Request) {
     const email = process.env.EMAIL;
@@ -10,6 +13,8 @@ export async function POST(request: Request) {
 
     try {
         const data = await request.json();
+
+
 
 
 
