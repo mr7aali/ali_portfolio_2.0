@@ -19,7 +19,7 @@ const HomePage = (
       <AboutMe />
       <Project />
       <ContactWithMe />
-      <Footer />
+      {/* <Footer /> */}
 
       <div className="mb-[100px]"></div>
 

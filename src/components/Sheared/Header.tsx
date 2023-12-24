@@ -16,7 +16,7 @@ const Header = () => {
     { text: "about", path: "ABOUT" },
     // { text: "book", path: "#" },
     { text: "portfolio", path: "PORTFOLIO" },
-    { text: "dashboard", path: "#" },
+    // { text: "dashboard", path: "/dashboard" },
     { text: "contact", path: "CONTACT" },
   ];
   const SocialIcon = [
@@ -29,13 +29,11 @@ const Header = () => {
   return (
     <>
       <motion.div
-
-        initial={{ y: "-100%", opacity:.4 }}
-        animate={{ y: "0",opacity:1 }}
+        initial={{ y: "-100%", opacity: 0.4 }}
+        animate={{ y: "0", opacity: 1 }}
         transition={{
           duration: 0.5,
         }}
-
         className="bg-[#111]"
       >
         <div className="max-w-[1040px] mx-auto flex py-6 items-center">
@@ -66,6 +64,15 @@ const Header = () => {
                   </ScrollLink>
                 </li>
               ))}
+
+              <li className=" cursor-pointer ">
+                <Link
+                  href={"/dashboard"}
+                  className="py-4 no-underline uppercase px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[15px] lg:text-[18px] transition ease-linear font-medium delay-150 "
+                >
+                  dashboard
+                </Link>
+              </li>
             </ul>
 
             <div className="lg:ml-10">
@@ -109,6 +116,14 @@ const Header = () => {
                       {Item.text}
                     </ScrollLink>
                   ))}
+                  <Link
+                    onClick={() => setOpen(!open)}
+                    href={"/dashboard"}
+                    style={{ border: "1px solid #363636" }}
+                    className="text-center uppercase cursor-pointer w-full  bg-[#222222] bord er-solid bo rder  py-4 no-underline px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[18px] transition ease-linear delay-75 font-thin"
+                  >
+                    dashboard
+                  </Link>
                 </div>
                 <div className="bg-[#222222] w-full justify-center flex py-3">
                   {SocialIcon.map((Item, i) => (
