@@ -2,9 +2,6 @@ import StyledComponentsRegistry from "@/lib/AntdRegistry";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins, Roboto } from "next/font/google";
-import Head from "next/head";
-import Header from "@/components/Sheared/Header";
-import Footer from "@/components/Sheared/Footer";
 
 // const poppins = Poppins({ subsets: ['latin'], weight: ["400", '300', '500'] });
 const roboto = Roboto({ subsets: ["latin"], weight: ["300", "400", "900"] });
@@ -22,9 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <Header />
+        {/* <Header /> */}
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );

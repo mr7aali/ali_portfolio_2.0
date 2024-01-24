@@ -10,11 +10,12 @@ const HeroSection = () => {
     <div className="max-w-[1040px] mx-auto sm:mt-10 ">
       <div className="flex flex-col-reverse sm:flex-row">
         <motion.div
-          initial={{ x: "-100%", opacity: 0 }}
-          animate={{ x: "0", opacity: 1 }}
-          transition={{
-            duration: 0.5,
-          }}
+
+          // initial={{ x: "-100%", opacity: 0 }}
+          // animate={{ x: "0", opacity: 1 }}
+          // transition={{
+          //   duration: 0.5,
+          // }}
          
           className="px-5  sm:px-3"
         >
@@ -84,11 +85,11 @@ const HeroSection = () => {
         </motion.div>
 
         <motion.div
-          initial={{ x: "100%", opacity: 0 }}
-          animate={{ x: "0", opacity: 1 }}
-          transition={{
-            duration: 0.5,
-          }}
+          // initial={{ x: "100%", opacity: 0 }}
+          // animate={{ x: "0", opacity: 1 }}
+          // transition={{
+          //   duration: 0.5,
+          // }}
           className="p-3 lg:p-10 flex justify-center items-center"
         >
           <div className="hero-img h-[260px] w-[260px]  sm:w-[285px] sm:h-[285px] lg:w-[350px] lg:h-[350px]"></div>

@@ -52,9 +52,9 @@ const AboutMe = () => {
           {/* hero  */}
 
           <div className=" mb-5 md:mb-0">
-            <h3 className="mb-10 text-[35px] lg:text-[40px] font-serif text-center">
+            <h1 className="mb-10 text-[35px] lg:text-[40px] font-serif text-center">
               Get to know me!
-            </h3>
+            </h1>
             <p className="text-[14px] sm:text-[16px] text-justify lg:text-left lg:text-[18px] font-serif text-[#666] mb-6 leading-relaxed">
               I'm a <strong>Frontend Web Developer</strong> building the
               Front-end of Websites and Web Applications that leads to the
@@ -85,16 +85,16 @@ const AboutMe = () => {
           </div>
 
           <div className="px-2">
-            <h3 className="mb-10 text-[35px text-[40px] font-serif text-center">
+            <h1 className="mb-10 text-[35px text-[40px] font-serif text-center">
               My Skills!
-            </h3>
+            </h1>
 
             <div className="flex flex-wrap justify-center">
               {/* skills */}
               {skills.map((item, i) => (
                 <span
                   key={i}
-                  className="bg-[rgba(153,153,153,.2)] text-[14px] lg:text-[17px] px-3 py-2 sm:px-5 sm:py-3 m-1 rounded-lg font-bold opacity-50 cursor-pointer"
+                  className="bg-[rgba(153,153,153,.2)] text-[14px] lg:text-[17px] px-3 py-2 sm:px-5 sm:py-3 m-1 rounded-lg font-bold  opacity-50 cursor-pointer"
                 >
                   {item}
                 </span>

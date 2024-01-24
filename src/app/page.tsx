@@ -7,35 +7,20 @@ const HeroSection = dynamic(() => import("@/components/HomePage/HeroSection"));
 const Footer = dynamic(() => import("@/components/Sheared/Footer"));
 const Header = dynamic(() => import("@/components/Sheared/Header"));
 
-const HomePage = (
-  // { isMobile }: { isMobile: any }
-  ) => {
-
-
+const HomePage = () => {
   return (
     <div>
+      <Header />
       <HeroSection />
       <Expertise />
       <AboutMe />
       <Project />
       <ContactWithMe />
-      {/* <Footer /> */}
+      <Footer />
 
-      <div className="mb-[100px]"></div>
-
-     
+      {/* <div className="mb-[100px]"></div> */}
     </div>
   );
 };
 
 export default HomePage;
-
-
-// export async function getInitialProps({ req }: { req: any }) {
-//   const userAgent = req.headers["user-agent"];
-//   const isMobile = userAgent.includes("Mobi");
-
-//   return {
-//     isMobile,
-//   };
-// }

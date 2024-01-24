@@ -29,11 +29,11 @@ const Header = () => {
   return (
     <>
       <motion.div
-        initial={{ y: "-100%", opacity: 0.4 }}
-        animate={{ y: "0", opacity: 1 }}
-        transition={{
-          duration: 0.5,
-        }}
+        // initial={{ y: "-100%", opacity: 0.4 }}
+        // animate={{ y: "0", opacity: 1 }}
+        // transition={{
+        //   duration: 0.5,
+        // }}
         className="bg-[#111]"
       >
         <div className="max-w-[1040px] mx-auto flex py-6 items-center">
