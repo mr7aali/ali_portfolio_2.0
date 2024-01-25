@@ -30,7 +30,7 @@ const ProjectCard = ({
           />
         </div>
         <div className="my-2 px-2">
-          <h3 className="font-thin text-black">{title}</h3>
+          <h2 className="font-thin text-black">{title}</h2>
           <small className="font-thin text-sm text-black">{subtitle}</small>
         </div>
       </motion.div>

@@ -30,11 +30,11 @@ const Expertise = () => {
   return (
     <AnimatePresence>
       <motion.div
-        initial={{ y: "-100%", opacity: 1 }}
-        animate={{ y: "0", opacity: 1 }}
-        transition={{
-          duration: 0.5,
-        }}
+        // initial={{ y: "-100%", opacity: 1 }}
+        // animate={{ y: "0", opacity: 1 }}
+        // transition={{
+        //   duration: 0.5,
+        // }}
         className="mt-14 max-w-[1220px] mx-auto"
       >
         <h1 className="text-center text-[50px] font-bold font-serif mb-16">
@@ -62,17 +62,17 @@ const Expertise = () => {
                 <span className="text-[50px] px-2 lg:px-5 text">
                   {<item.Icon className="" />}
                 </span>
-                <h3 className="text-[25px] lg:text-[30px]">{item.title}</h3>
+                <h2 className="text-[25px] lg:text-[30px]">{item.title}</h2>
               </div>
 
               <div className="ml-2">
-                <p className="font-bold opacity-50 py-2 font-serif">{"<h3>"}</p>
+                <p className="font-bold  py-2 font-serif">{"<h3>"}</p>
                 <div style={{ borderLeft: "3px solid #111" }} className="ml-4">
                   <span className=" lg:text-[17px] block p-4 font-mono font-extrabold">
                     {item.description}
                   </span>
                 </div>
-                <p className="font-bold opacity-50 py-2 font-serif">
+                <p className="font-bold  py-2 font-serif">
                   {"</h3>"}
                 </p>
               </div>
