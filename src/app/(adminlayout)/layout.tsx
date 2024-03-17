@@ -1,3 +1,4 @@
+import SideBar from "@/components/adminDashboard/SideBar/SideBar";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,9 +9,7 @@ export const metadata: Metadata = {
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
-      <h1>This is blog layout</h1>
-      {children}
-      <h1>This is blog layout</h1>
+      <SideBar contain={children} /> 
     </div>
   );
 };
