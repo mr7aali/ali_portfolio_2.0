@@ -3,6 +3,7 @@ import { MobileOutlined } from "@ant-design/icons";
 import { FaReact } from "react-icons/fa";
 import { SiPostman } from "react-icons/si";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 // Animation variants for section
 const sectionVariants = {
@@ -31,30 +32,59 @@ const cardVariants = {
 };
 
 // Animation variants for background cards (HeroSection-inspired)
+// const backgroundCardVariants = {
+//   hidden: { opacity: 0, scale: 0.8, x: 20, y: 20 },
+//   visible: (i: number) => ({
+//     opacity: 0.9,
+//     scale: 1,
+//     x: 0,
+//     y: 0,
+//     transition: {
+//       duration: 0.6,
+//       delay: i * 0.3,
+//       type: "spring",
+//       stiffness: 120,
+//       damping: 15,
+//       ease: "easeOut",
+//     },
+//   }),
+//   hover: {
+//     y: -5,
+//     rotate: 3,
+//     boxShadow: "0 6px 20px rgba(79, 70, 229, 0.5)",
+//     transition: { duration: 0.3, ease: "easeOut" },
+//   },
+// };
 const backgroundCardVariants = {
-  hidden: { opacity: 0, scale: 0.8, x: 20, y: 20 },
-  visible: (i: number) => ({
+  hidden: { opacity: 0, x: -10, rotate: -5 },
+  visible: (index: number) => ({
+    opacity: 0.7,
+    x: index === 1 ? -10 : 10,
+    y: index === 1 ? 10 : -10,
+    rotate: index === 1 ? -5 : 5,
+    transition: { duration: 0.6, delay: 0.2 },
+  }),
+  spread: (index: number) => ({
     opacity: 0.9,
-    scale: 1,
-    x: 0,
+
     y: 0,
+    rotate: 0,
     transition: {
       duration: 0.6,
-      delay: i * 0.3,
       type: "spring",
-      stiffness: 120,
+      stiffness: 80,
       damping: 15,
-      ease: "easeOut",
+      delay: index === 1 ? 0 : 0.2, // Staggered animation
     },
   }),
-  hover: {
-    y: -5,
-    rotate: 3,
-    boxShadow: "0 6px 20px rgba(79, 70, 229, 0.5)",
-    transition: { duration: 0.3, ease: "easeOut" },
-  },
+  stacked: (index: number) => ({
+    opacity: 0.7,
+    x: index === 1 ? -10 : 10,
+    y: index === 1 ? 10 : -10,
+    rotate: index === 1 ? -3 : 5,
+    transition: { duration: 0.5 },
+  }),
 };
-
 // Animation variants for icons
 const iconVariants = {
   hidden: { opacity: 0, rotate: -10 },
@@ -83,6 +113,14 @@ const Expertise2 = () => {
       Icon: MobileOutlined,
     },
   ];
+  const [isSpread, setIsSpread] = useState(false);
+  const handleContainerHoverStart = (): void => {
+    setIsSpread(true);
+  };
+
+  const handleContainerHoverEnd = (): void => {
+    setIsSpread(false);
+  };
 
   return (
     <motion.section
@@ -104,20 +142,39 @@ const Expertise2 = () => {
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         {Items.map((item, index) => (
-          <div className="relative" key={index}>
+          <div
+            className="relative"
+            // style={{ border: "1px solid red" }}
+            key={index}
+          >
             {/* Background Card */}
-            <motion.div
-              className="absolute inset-0 z-0 translate-x-3 translate-y-3 border shadow-md rounded-xl bg-gradient-to-br from-indigo-600/20 to-blue-600/20 backdrop-blur-sm border-indigo-400/30"
+            {/* <motion.div
+              className="absolute inset-0 z-0 translate-x-3 translate-y-3 border shadow-md bg-red-950 max-h-fit rounded-xl bg-gradient-to-br from-indigo-600/20 to-blue-600/20 backdrop-blur-sm border-indigo-400/30"
               custom={index}
               initial="hidden"
               whileInView="visible"
               whileHover="hover"
               viewport={{ once: true }}
               variants={backgroundCardVariants}
-            />
+              style={{ border: "1px solid red" }}
+            /> */}
+            <motion.div
+              className="absolute top-0 bottom-0 left-0 right-0 w-full rounded-lg shadow-md cursor-pointer bg-[#4f46e5]"
+              variants={backgroundCardVariants}
+              initial="hidden"
+              animate={isSpread ? "spread" : "stacked"}
+              custom={1} // Index for positioning
+              style={{
+                transform: isSpread
+                  ? "none"
+                  : "translate(-10px, 10px) rotate(-5deg)",
+                // border: "10px solid red",
+                zIndex: 1,
+              }}
+            ></motion.div>
             {/* Main Card */}
             <motion.div
-              className="relative z-10 flex flex-col p-6 transition-shadow duration-300 shadow-lg bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl hover:shadow-xl"
+              className="relative z-10 flex flex-col h-full p-6 transition-shadow duration-300 shadow-lg bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl hover:shadow-xl"
               custom={index}
               initial="hidden"
               whileInView="visible"
@@ -125,6 +182,8 @@ const Expertise2 = () => {
               viewport={{ once: true }}
               variants={cardVariants}
               id="update-this-card"
+              onHoverStart={handleContainerHoverStart}
+              onHoverEnd={handleContainerHoverEnd}
             >
               {/* Icon and Title */}
               <div className="flex items-center mb-4">
