@@ -39,6 +39,17 @@ const imageVariants = {
   },
 };
 
+const cardVariants = {
+  hidden: { opacity: 0, x: -10, rotate: -5 },
+  visible: {
+    opacity: 0.7,
+    x: 0,
+    rotate: -5,
+    transition: { duration: 0.6, delay: 0.2 },
+  },
+  hover: { scale: 1.03, rotate: -3, transition: { duration: 0.3 } },
+};
+
 const HeroSection = () => {
   return (
     <section className="relative flex items-center justify-center min-h-screen py-12 overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-purple-50 sm:py-20">
@@ -49,22 +60,42 @@ const HeroSection = () => {
           animate="visible"
           variants={containerVariants}
         >
-          {/* Profile Picture */}
+          {/* Profile Picture with Card Stack Effect */}
           <motion.div
-            className="flex justify-center mb-8"
+            className="relative flex justify-center mb-8"
             initial="hidden"
             animate="visible"
             whileHover="hover"
           >
+            {/* Background Card 1 */}
             <motion.div
-              className="w-64 h-64 bg-center bg-cover border-4 border-white rounded-lg cursor-pointer"
+              className="absolute w-64 h-64 bg-indigo-100 rounded-lg shadow-md"
+              variants={cardVariants}
+              style={{
+                transform: "translate(-10px, 10px) rotate(-5deg)",
+                zIndex: 1,
+              }}
+            ></motion.div>
+            {/* Background Card 2 */}
+            <motion.div
+              className="absolute w-64 h-64 bg-purple-100 rounded-lg shadow-md"
+              variants={cardVariants}
+              style={{
+                transform: "translate(10px, -10px) rotate(5deg)",
+                zIndex: 1,
+              }}
+            ></motion.div>
+            {/* Profile Picture */}
+            <motion.div
+              id="update"
+              className="relative w-64 h-64 bg-center bg-cover border-4 border-white rounded-lg cursor-pointer"
               variants={imageVariants}
               style={{
                 backgroundImage:
                   "url('https://i.ibb.co/j3fDZYd/IMG-20231018-160911.jpg')",
                 boxShadow:
                   "0 4px 16px rgba(0, 0, 0, 0.2), 0 0 20px rgba(79, 70, 229, 0.2)",
-                border: "1px solid red",
+                zIndex: 2,
               }}
             ></motion.div>
           </motion.div>
