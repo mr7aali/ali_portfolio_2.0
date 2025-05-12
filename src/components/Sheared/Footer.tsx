@@ -51,9 +51,9 @@ const Footer = () => {
       variants={footerVariants}
     >
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div className="grid items-center grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:items-center">
           {/* Logo and Copyright */}
-          <div className="flex flex-col items-center md:items-start">
+          <div className="flex flex-col items-center">
             <motion.div className="mb-4" variants={itemVariants} custom={0}>
               <a
                 href="/"
@@ -88,7 +88,7 @@ const Footer = () => {
                 >
                   <a
                     href={item.path}
-                    className="text-sm font-medium text-transparent no-underline uppercase bg-gradient-to-r from-indigo-500 to-blue-500 bg-clip-text group"
+                    className="block w-full text-sm font-medium text-center text-transparent no-underline uppercase bg-gradient-to-r from-indigo-500 to-blue-500 bg-clip-text group"
                   >
                     {item.text}
                     <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-indigo-400 transition-all duration-300 group-hover:w-full"></span>
@@ -99,7 +99,7 @@ const Footer = () => {
           </div>
 
           {/* Social Icons */}
-          <div className="flex justify-center md:justify-end">
+          <div className="flex justify-center">
             <div className="flex gap-4">
               {SocialIcon.map((item, index) => (
                 <motion.a
