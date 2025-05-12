@@ -1,17 +1,22 @@
+import Image from "next/image";
+
 const LoadingPage = () => {
   return (
-    <div className="h-screen w-full flex justify-center items-center">
-      <div className="relative flex justify-center items-center">
+    <div className="flex items-center justify-center w-full h-screen">
+      <div className="relative flex items-center justify-center">
         <div
           style={{
             borderTop: "4px solid rgb(168 85 247)",
             borderBottom: "4px solid black",
           }}
-          className="absolute animate-spin rounded-full h-32 w-32  border-t-2  border-b-2 border-purple-500"
+          className="absolute w-32 h-32 border-t-2 border-b-2 border-purple-500 rounded-full animate-spin"
         ></div>
-        <img
+        <Image
+          height={112}
+          width={112}
           src="https://www.svgrepo.com/show/509001/avatar-thinking-9.svg"
           className="rounded-full h-28 w-28"
+          alt="Loading..."
         />
       </div>
     </div>

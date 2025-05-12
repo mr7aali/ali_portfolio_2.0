@@ -9,15 +9,12 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link as ScrollLink } from "react-scroll";
 
 const Header = () => {
   const NavItem = [
-    { text: "about", path: "ABOUT" },
-    // { text: "book", path: "#" },
-    { text: "portfolio", path: "PORTFOLIO" },
-    // { text: "dashboard", path: "/dashboard" },
-    { text: "contact", path: "CONTACT" },
+    { text: "about", path: "#ABOUT" },
+    { text: "portfolio", path: "#PORTFOLIO" },
+    { text: "contact", path: "#CONTACT" },
   ];
   const SocialIcon = [
     { Icon: LinkedinOutlined, path: "https://www.linkedin.com/in/mr7aali/" },
@@ -28,14 +25,7 @@ const Header = () => {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <motion.div
-        // initial={{ y: "-100%", opacity: 0.4 }}
-        // animate={{ y: "0", opacity: 1 }}
-        // transition={{
-        //   duration: 0.5,
-        // }}
-        className="bg-[#111]"
-      >
+      <motion.div className="bg-[#111]">
         <div className="max-w-[1040px] mx-auto flex py-6 items-center">
           <Link
             href={"/"}
@@ -44,31 +34,27 @@ const Header = () => {
             Aali
           </Link>
 
-          <div onClick={() => setOpen(!open)} className="md:hidden mr-3">
-            <MenuOutlined className="text-[#fff]  text-[25px] md:text-[30px]  cursor-pointer hover:opacity-50 delay-150 transition-all" />
+          <div onClick={() => setOpen(!open)} className="mr-3 md:hidden">
+            <MenuOutlined className="text-[#fff] text-[25px] md:text-[30px] cursor-pointer hover:opacity-50 delay-150 transition-all" />
           </div>
 
-          <div className="hidden md:flex items-center">
-            <ul className="list-none flex">
+          <div className="items-center hidden md:flex">
+            <ul className="flex list-none">
               {NavItem.map((Item) => (
-                <li key={Item.text} className=" cursor-pointer ">
-                  <ScrollLink
-                    to={Item.path}
-                    smooth={true}
-                    duration={500}
-                    offset={-100}
+                <li key={Item.text} className="cursor-pointer">
+                  <Link
                     href={Item.path}
-                    className="py-4 no-underline uppercase px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[15px] lg:text-[18px] transition ease-linear font-medium delay-150 "
+                    className="py-4 no-underline uppercase px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[15px] lg:text-[18px] transition ease-linear font-medium delay-150"
                   >
                     {Item.text}
-                  </ScrollLink>
+                  </Link>
                 </li>
               ))}
 
-              <li className=" cursor-pointer ">
+              <li className="cursor-pointer">
                 <Link
                   href={"/dashboard"}
-                  className="py-4 no-underline uppercase px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[15px] lg:text-[18px] transition ease-linear font-medium delay-150 "
+                  className="py-4 no-underline uppercase px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[15px] lg:text-[18px] transition ease-linear font-medium delay-150"
                 >
                   dashboard
                 </Link>
@@ -98,29 +84,24 @@ const Header = () => {
               exit={{ height: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div
-                className={`flex flex-col items-center md:hidden  w-full top-0`}
-              >
-                <div className="w-full list-none flex flex-col items-center">
+              <div className="top-0 flex flex-col items-center w-full md:hidden">
+                <div className="flex flex-col items-center w-full list-none">
                   {NavItem.map((Item) => (
-                    <ScrollLink
+                    <Link
                       onClick={() => setOpen(!open)}
-                      to={Item.path}
-                      smooth={true}
-                      duration={500}
-                      offset={-100}
+                      href={Item.path}
                       key={Item.text}
                       style={{ border: "1px solid #363636" }}
-                      className="text-center uppercase cursor-pointer w-full  bg-[#222222] bord er-solid bo rder  py-4 no-underline px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[18px] transition ease-linear delay-75 font-thin"
+                      className="text-center uppercase cursor-pointer w-full bg-[#222222] border-solid border py-4 no-underline px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[18px] transition ease-linear delay-75 font-thin"
                     >
                       {Item.text}
-                    </ScrollLink>
+                    </Link>
                   ))}
                   <Link
                     onClick={() => setOpen(!open)}
                     href={"/dashboard"}
                     style={{ border: "1px solid #363636" }}
-                    className="text-center uppercase cursor-pointer w-full  bg-[#222222] bord er-solid bo rder  py-4 no-underline px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[18px] transition ease-linear delay-75 font-thin"
+                    className="text-center uppercase cursor-pointer w-full bg-[#222222] border-solid border py-4 no-underline px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[18px] transition ease-linear delay-75 font-thin"
                   >
                     dashboard
                   </Link>

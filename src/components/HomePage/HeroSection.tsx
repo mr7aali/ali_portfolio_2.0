@@ -101,7 +101,6 @@ const HeroSection: React.FC = () => {
       <motion.div
         id="if-i-hover-then-the-functionality-will-happanes"
         className="max-w-5xl px-4 mx-auto sm:px-6 lg:px-8"
-        style={{ border: "1px solid red" }}
         onHoverStart={handleContainerHoverStart}
         onHoverEnd={handleContainerHoverEnd}
         onTouchStart={handleContainerTouchStart}
@@ -176,7 +175,7 @@ const HeroSection: React.FC = () => {
             className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl"
             variants={textVariants}
           >
-            Hey, I'm <span className="text-indigo-600">Sheikh Aali</span>
+            Hey, I&apos;m <span className="text-indigo-600">Sheikh Aali</span>
           </motion.h1>
 
           {/* Typewriter Effect */}
@@ -207,10 +206,11 @@ const HeroSection: React.FC = () => {
             className="max-w-3xl mx-auto mt-6 text-lg leading-relaxed text-gray-600 sm:text-xl"
             variants={textVariants}
           >
-            Based in Dhaka, Bangladesh 📍, I'm a passionate developer crafting
-            seamless, dynamic web experiences. From sleek e-commerce platforms
-            to interactive applications, I turn ideas into reality. Dive into my
-            portfolio and let’s create something extraordinary together!
+            Based in Dhaka, Bangladesh 📍, I&apos;m a passionate developer
+            crafting seamless, dynamic web experiences. From sleek e-commerce
+            platforms to interactive applications, I turn ideas into reality.
+            Dive into my portfolio and let’s create something extraordinary
+            together!
           </motion.p>
 
           {/* Call-to-Action Buttons */}
