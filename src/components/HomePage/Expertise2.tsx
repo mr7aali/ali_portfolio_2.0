@@ -2,7 +2,7 @@
 import { MobileOutlined } from "@ant-design/icons";
 import { FaReact } from "react-icons/fa";
 import { SiPostman } from "react-icons/si";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 // Animation variants for section
 const sectionVariants = {
@@ -81,7 +81,7 @@ const Expertise2 = () => {
         {Items.map((item, index) => (
           <motion.div
             key={index}
-            className="relative p-6 transition-shadow duration-300 shadow-lg bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl hover:shadow-xl"
+            className="relative flex flex-col p-6 transition-shadow duration-300 shadow-lg bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl hover:shadow-xl"
             custom={index}
             initial="hidden"
             whileInView="visible"
@@ -104,20 +104,34 @@ const Expertise2 = () => {
             </div>
 
             {/* Description with Code Style */}
-            <div className="relative">
-              <span className="text-indigo-500"> {"<h3>"}</span>
+            <div className="relative flex flex-col justify-center flex-grow min-h-[120px]">
+              <motion.span
+                className="font-mono text-sm text-indigo-500 sm:text-base"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                {"<h3>"}
+              </motion.span>
               <motion.p
-                className="pl-4 ml-4 font-mono text-sm leading-relaxed text-gray-300 border-l-4 border-indigo-500 sm:text-base"
+                className="pl-4 my-2 font-mono text-sm leading-relaxed text-gray-300 border-l-4 border-indigo-500 sm:text-base"
                 initial={{ opacity: 0, x: -10 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4, delay: 0.2 }}
                 viewport={{ once: true }}
-                style={{ borderLeft: "2px solid red" }}
               >
                 {item.description}
               </motion.p>
-
-              <span className="text-indigo-500"> {"<h3>"}</span>
+              <motion.span
+                className="font-mono text-sm text-indigo-500 sm:text-base"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                {"</h3>"}
+              </motion.span>
             </div>
 
             {/* Decorative Gradient Overlay */}
