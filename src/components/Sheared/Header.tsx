@@ -10,6 +10,51 @@ import Link from "next/link";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+// Animation variants for header
+const headerVariants = {
+  hidden: { y: -100, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
+
+// Animation variants for nav items
+const navItemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.3, delay: i * 0.1, ease: "easeOut" },
+  }),
+};
+
+// Animation variants for mobile menu
+const mobileMenuVariants = {
+  hidden: { height: 0, opacity: 0 },
+  visible: {
+    height: "auto",
+    opacity: 1,
+    transition: { duration: 0.4, ease: "easeOut" },
+  },
+  exit: {
+    height: 0,
+    opacity: 0,
+    transition: { duration: 0.3, ease: "easeIn" },
+  },
+};
+
+// Animation variants for social icons in mobile menu
+const socialIconVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: (i: number) => ({
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.3, delay: i * 0.15, ease: "easeOut" },
+  }),
+};
+
 const Header = () => {
   const NavItem = [
     { text: "about", path: "#ABOUT" },
@@ -23,107 +68,161 @@ const Header = () => {
     { Icon: GithubOutlined, path: "https://github.com/mr7aali" },
   ];
   const [open, setOpen] = useState(false);
+
   return (
-    <>
-      <motion.div className="bg-[#111]">
-        <div className="max-w-[1040px] mx-auto flex py-6 items-center">
-          <Link
-            href={"/"}
-            className="text-[#fff] text-[25px] flex-1 mx-5 md:text-[40px] font-bold no-underline"
+    <motion.header
+      className="fixed top-0 z-50 w-full shadow-lg bg-gradient-to-r from-gray-900 to-gray-800"
+      initial="hidden"
+      animate="visible"
+      variants={headerVariants}
+    >
+      <div className="flex items-center px-4 py-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        {/* Logo */}
+        <Link
+          href="/"
+          className="flex-1 text-2xl font-extrabold tracking-tight text-white no-underline sm:text-3xl"
+        >
+          <motion.span
+            whileHover={{ scale: 1.05, color: "#60A5FA" }}
+            transition={{ duration: 0.2 }}
           >
             Aali
-          </Link>
+          </motion.span>
+        </Link>
 
-          <div onClick={() => setOpen(!open)} className="mr-3 md:hidden">
-            <MenuOutlined className="text-[#fff] text-[25px] md:text-[30px] cursor-pointer hover:opacity-50 delay-150 transition-all" />
-          </div>
+        {/* Mobile Menu Toggle */}
+        <div
+          onClick={() => setOpen(!open)}
+          className="text-2xl text-white cursor-pointer md:hidden"
+        >
+          <motion.div whileTap={{ scale: 0.9 }}>
+            <MenuOutlined className="transition-colors duration-200 hover:text-blue-400" />
+          </motion.div>
+        </div>
 
-          <div className="items-center hidden md:flex">
-            <ul className="flex list-none">
-              {NavItem.map((Item) => (
-                <li key={Item.text} className="cursor-pointer">
-                  <Link
-                    href={Item.path}
-                    className="py-4 no-underline uppercase px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[15px] lg:text-[18px] transition ease-linear font-medium delay-150"
-                  >
-                    {Item.text}
-                  </Link>
-                </li>
-              ))}
-
-              <li className="cursor-pointer">
+        {/* Desktop Navigation */}
+        <nav className="items-center hidden space-x-6 md:flex">
+          <ul className="flex space-x-4 list-none">
+            {NavItem.map((item, index) => (
+              <motion.li
+                key={item.text}
+                custom={index}
+                initial="hidden"
+                animate="visible"
+                variants={navItemVariants}
+                className="relative"
+              >
                 <Link
-                  href={"/dashboard"}
-                  className="py-4 no-underline uppercase px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[15px] lg:text-[18px] transition ease-linear font-medium delay-150"
+                  href={item.path}
+                  className="relative px-3 py-2 text-sm font-medium text-white no-underline uppercase lg:text-base group"
+                >
+                  {item.text}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+                </Link>
+              </motion.li>
+            ))}
+            <motion.li
+              custom={NavItem.length}
+              initial="hidden"
+              animate="visible"
+              variants={navItemVariants}
+              className="relative"
+            >
+              <Link
+                href="/dashboard"
+                className="relative px-3 py-2 text-sm font-medium text-white no-underline uppercase lg:text-base group"
+              >
+                dashboard
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+              </Link>
+            </motion.li>
+          </ul>
+
+          {/* Social Icons */}
+          <div className="flex ml-6 space-x-2">
+            {SocialIcon.map((item, index) => (
+              <motion.a
+                key={index}
+                href={item.path}
+                target="_blank"
+                className="p-2 text-xl text-white lg:text-2xl"
+                whileHover={{ scale: 1.2, color: "#60A5FA" }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ duration: 0.2 }}
+              >
+                <item.Icon />
+              </motion.a>
+            ))}
+          </div>
+        </nav>
+      </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            variants={mobileMenuVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className="w-full bg-gray-800 md:hidden"
+          >
+            <div className="flex flex-col items-center py-4">
+              {NavItem.map((item, index) => (
+                <motion.div
+                  key={item.text}
+                  custom={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                >
+                  <Link
+                    href={item.path}
+                    onClick={() => setOpen(false)}
+                    className="w-full py-3 text-lg font-medium text-center text-white no-underline uppercase transition-colors duration-200 hover:bg-gray-700"
+                  >
+                    {item.text}
+                  </Link>
+                </motion.div>
+              ))}
+              <motion.div
+                custom={NavItem.length}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: NavItem.length * 0.1 }}
+              >
+                <Link
+                  href="/dashboard"
+                  onClick={() => setOpen(false)}
+                  className="w-full py-3 text-lg font-medium text-center text-white no-underline uppercase transition-colors duration-200 hover:bg-gray-700"
                 >
                   dashboard
                 </Link>
-              </li>
-            </ul>
-
-            <div className="lg:ml-10">
-              {SocialIcon.map((Item, i) => (
-                <a
-                  key={i}
-                  href={Item.path}
-                  target="_blank"
-                  className="text-[#fff] no-underline text-[30px] p-2 xl:p-3 cursor-pointer hover:opacity-50 delay-150 transition-all"
-                >
-                  <Item.Icon />
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-        {/* drop down menu */}
-        <AnimatePresence>
-          {open && (
-            <motion.div
-              initial={{ height: 0, overflow: "visible" }}
-              animate={{ height: "auto", overflow: "hidden" }}
-              exit={{ height: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="top-0 flex flex-col items-center w-full md:hidden">
-                <div className="flex flex-col items-center w-full list-none">
-                  {NavItem.map((Item) => (
-                    <Link
-                      onClick={() => setOpen(!open)}
-                      href={Item.path}
-                      key={Item.text}
-                      style={{ border: "1px solid #363636" }}
-                      className="text-center uppercase cursor-pointer w-full bg-[#222222] border-solid border py-4 no-underline px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[18px] transition ease-linear delay-75 font-thin"
-                    >
-                      {Item.text}
-                    </Link>
-                  ))}
-                  <Link
-                    onClick={() => setOpen(!open)}
-                    href={"/dashboard"}
-                    style={{ border: "1px solid #363636" }}
-                    className="text-center uppercase cursor-pointer w-full bg-[#222222] border-solid border py-4 no-underline px-2 xl:p-4 hover:opacity-50 text-[#fff] text-[18px] transition ease-linear delay-75 font-thin"
+              </motion.div>
+              <div className="flex justify-center py-4 space-x-4">
+                {SocialIcon.map((item, index) => (
+                  <motion.a
+                    key={index}
+                    href={item.path}
+                    target="_blank"
+                    className="p-2 text-2xl text-white"
+                    custom={index}
+                    initial="hidden"
+                    animate="visible"
+                    variants={socialIconVariants}
+                    whileHover={{ scale: 1.2, color: "#60A5FA" }}
+                    whileTap={{ scale: 0.9 }}
+                    transition={{ duration: 0.2 }}
                   >
-                    dashboard
-                  </Link>
-                </div>
-                <div className="bg-[#222222] w-full justify-center flex py-3">
-                  {SocialIcon.map((Item, i) => (
-                    <a
-                      key={i}
-                      href={Item.path}
-                      target="_blank"
-                      className="text-[#fff] no-underline text-[30px] p-2 xl:p-3 cursor-pointer hover:opacity-50 delay-150 transition-all"
-                    >
-                      <Item.Icon />
-                    </a>
-                  ))}
-                </div>
+                    <item.Icon />
+                  </motion.a>
+                ))}
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
-    </>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 };
 
