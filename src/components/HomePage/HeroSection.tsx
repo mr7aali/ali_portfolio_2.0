@@ -17,6 +17,21 @@ const textVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
+const imageVariants = {
+  hidden: { opacity: 0, scale: 0.9, rotate: -10 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    rotate: 0,
+    transition: { duration: 0.8, ease: "easeOut" },
+  },
+  hover: {
+    scale: 1.05,
+    boxShadow: "0 8px 32px rgba(79, 70, 229, 0.4)",
+    transition: { duration: 0.3 },
+  },
+};
+
 const HeroSection = () => {
   return (
     <section className="relative flex items-center justify-center min-h-screen py-12 overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-purple-50 sm:py-20">
@@ -27,6 +42,27 @@ const HeroSection = () => {
           animate="visible"
           variants={containerVariants}
         >
+          {/* Profile Photo */}
+          <motion.div
+            className="flex justify-center mb-8"
+            initial="hidden"
+            animate="visible"
+            variants={imageVariants}
+            whileHover="hover"
+          >
+            <div
+              className="w-48 h-48 bg-center bg-cover sm:h-64 sm:w-64 lg:h-72 lg:w-72"
+              style={{
+                backgroundImage:
+                  "url('https://i.ibb.co/j3fDZYd/IMG-20231018-160911.jpg')",
+                clipPath:
+                  "polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%)",
+                boxShadow:
+                  "0 4px 16px rgba(0, 0, 0, 0.2), 0 0 20px rgba(79, 70, 229, 0.2)",
+              }}
+            ></div>
+          </motion.div>
+
           {/* Greeting and Name */}
           <motion.h1
             className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl"
@@ -69,7 +105,7 @@ const HeroSection = () => {
             portfolio and let’s create something extraordinary together!
           </motion.p>
 
-          {/* Call-to-Action Buttons with Previous Animation */}
+          {/* Call-to-Action Buttons */}
           <motion.div
             className="flex flex-col justify-center gap-4 mt-10 sm:flex-row"
             variants={textVariants}
