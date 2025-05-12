@@ -105,7 +105,7 @@ const HeroSection = () => {
             className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl"
             variants={textVariants}
           >
-            Hey, I'm <span className="text-indigo-600">Sheikh Aali</span>
+            Hey, I&apos;m <span className="text-indigo-600">Sheikh Aali</span>
           </motion.h1>
 
           {/* Typewriter Effect */}
@@ -136,10 +136,11 @@ const HeroSection = () => {
             className="max-w-3xl mx-auto mt-6 text-lg leading-relaxed text-gray-600 sm:text-xl"
             variants={textVariants}
           >
-            Based in Dhaka, Bangladesh 📍, I'm a passionate developer crafting
-            seamless, dynamic web experiences. From sleek e-commerce platforms
-            to interactive applications, I turn ideas into reality. Dive into my
-            portfolio and let’s create something extraordinary together!
+            Based in Dhaka, Bangladesh 📍, I&apos;m a passionate developer
+            crafting seamless, dynamic web experiences. From sleek e-commerce
+            platforms to interactive applications, I turn ideas into reality.
+            Dive into my portfolio and let’s create something extraordinary
+            together!
           </motion.p>
 
           {/* Call-to-Action Buttons */}
