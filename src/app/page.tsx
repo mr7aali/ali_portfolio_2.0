@@ -12,9 +12,9 @@ const Header = dynamic(() => import("@/components/Sheared/Header"));
 const HomePage = () => {
   return (
     <div>
-      {/* <Header /> */}
+      <Header />
       <ScrollProgress className="top-[0px] h-2 " />
-      {/* <HeroSection /> */}
+      <HeroSection />
       <Expertise />
       <Expertise2 />
       <AboutMe />

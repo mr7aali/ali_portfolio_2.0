@@ -14,7 +14,7 @@ const sectionVariants = {
   },
 };
 
-// Animation variants for cards
+// Animation variants for main cards
 const cardVariants = {
   hidden: { opacity: 0, y: 30, scale: 0.95 },
   visible: (i: number) => ({
@@ -26,6 +26,31 @@ const cardVariants = {
   hover: {
     scale: 1.05,
     boxShadow: "0 8px 24px rgba(0, 0, 0, 0.2)",
+    transition: { duration: 0.3, ease: "easeOut" },
+  },
+};
+
+// Animation variants for background cards (HeroSection-inspired)
+const backgroundCardVariants = {
+  hidden: { opacity: 0, scale: 0.8, x: 20, y: 20 },
+  visible: (i: number) => ({
+    opacity: 0.9,
+    scale: 1,
+    x: 0,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      delay: i * 0.3,
+      type: "spring",
+      stiffness: 120,
+      damping: 15,
+      ease: "easeOut",
+    },
+  }),
+  hover: {
+    y: -5,
+    rotate: 3,
+    boxShadow: "0 6px 20px rgba(79, 70, 229, 0.5)",
     transition: { duration: 0.3, ease: "easeOut" },
   },
 };
@@ -79,64 +104,77 @@ const Expertise2 = () => {
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         {Items.map((item, index) => (
-          <motion.div
-            key={index}
-            className="relative flex flex-col p-6 transition-shadow duration-300 shadow-lg bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl hover:shadow-xl"
-            custom={index}
-            initial="hidden"
-            whileInView="visible"
-            whileHover="hover"
-            viewport={{ once: true }}
-            variants={cardVariants}
-          >
-            {/* Icon and Title */}
-            <div className="flex items-center mb-4">
-              <motion.div
-                className="mr-4 text-4xl text-indigo-400"
-                variants={iconVariants}
-                whileHover="hover"
-              >
-                <item.Icon />
-              </motion.div>
-              <h2 className="text-xl font-bold text-white sm:text-2xl">
-                {item.title}
-              </h2>
-            </div>
+          <div className="relative" key={index}>
+            {/* Background Card */}
+            <motion.div
+              className="absolute inset-0 z-0 translate-x-3 translate-y-3 border shadow-md rounded-xl bg-gradient-to-br from-indigo-600/20 to-blue-600/20 backdrop-blur-sm border-indigo-400/30"
+              custom={index}
+              initial="hidden"
+              whileInView="visible"
+              whileHover="hover"
+              viewport={{ once: true }}
+              variants={backgroundCardVariants}
+            />
+            {/* Main Card */}
+            <motion.div
+              className="relative z-10 flex flex-col p-6 transition-shadow duration-300 shadow-lg bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl hover:shadow-xl"
+              custom={index}
+              initial="hidden"
+              whileInView="visible"
+              whileHover="hover"
+              viewport={{ once: true }}
+              variants={cardVariants}
+              id="update-this-card"
+            >
+              {/* Icon and Title */}
+              <div className="flex items-center mb-4">
+                <motion.div
+                  className="mr-4 text-4xl text-indigo-400"
+                  variants={iconVariants}
+                  whileHover="hover"
+                >
+                  <item.Icon />
+                </motion.div>
+                <h2 className="text-xl font-bold text-white sm:text-2xl">
+                  {item.title}
+                </h2>
+              </div>
 
-            {/* Description with Code Style */}
-            <div className="relative flex flex-col justify-center flex-grow min-h-[120px]">
-              <motion.span
-                className="font-mono text-sm text-indigo-500 sm:text-base"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.4, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                {"<h3>"}
-              </motion.span>
-              <motion.p
-                className="pl-4 my-2 font-mono text-sm leading-relaxed text-gray-300 border-l-4 border-indigo-500 sm:text-base"
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                {item.description}
-              </motion.p>
-              <motion.span
-                className="font-mono text-sm text-indigo-500 sm:text-base"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.4, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                {"</h3>"}
-              </motion.span>
-            </div>
+              {/* Description with Code Style */}
+              <div className="relative flex flex-col justify-center flex-grow min-h-[120px]">
+                <motion.span
+                  className="font-mono text-sm text-indigo-500 sm:text-base"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.4, delay: 0.2 }}
+                  viewport={{ once: true }}
+                >
+                  {"<h3>"}
+                </motion.span>
+                <motion.p
+                  className="pl-4 my-2 font-mono text-sm leading-relaxed text-gray-300 border-l-4 border-indigo-500 sm:text-base"
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: 0.2 }}
+                  viewport={{ once: true }}
+                >
+                  {item.description}
+                </motion.p>
+                <motion.span
+                  className="font-mono text-sm text-indigo-500 sm:text-base"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.4, delay: 0.2 }}
+                  viewport={{ once: true }}
+                >
+                  {"</h3>"}
+                </motion.span>
+              </div>
 
-            {/* Decorative Gradient Overlay */}
-            <div className="absolute inset-0 transition-opacity duration-300 opacity-0 rounded-xl bg-gradient-to-r from-indigo-500/10 to-blue-500/10 group-hover:opacity-100" />
-          </motion.div>
+              {/* Decorative Gradient Overlay */}
+              <div className="absolute inset-0 transition-opacity duration-300 opacity-0 rounded-xl bg-gradient-to-r from-indigo-500/10 to-blue-500/10 group-hover:opacity-100" />
+            </motion.div>
+          </div>
         ))}
       </div>
 
