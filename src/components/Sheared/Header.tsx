@@ -167,7 +167,7 @@ const Header = () => {
             exit="exit"
             className="w-full bg-gray-800 md:hidden"
           >
-            <div className="flex flex-col items-center py-4">
+            <div className="flex flex-col items-center pt-3">
               {NavItem.map((item, index) => (
                 <motion.div
                   key={item.text}
@@ -175,11 +175,14 @@ const Header = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
+                  // style={{ borderBottom: "1px solid #fff" }}
+                  className="w-full text-center"
                 >
                   <Link
+                    style={{ borderBottom: "1px solid #fff" }}
                     href={item.path}
                     onClick={() => setOpen(false)}
-                    className="w-full py-3 text-lg font-medium text-center text-white no-underline uppercase transition-colors duration-200 hover:bg-gray-700"
+                    className="block w-full py-3 text-lg font-medium text-center text-white no-underline uppercase transition-colors duration-200 border-b border-gray-600 hover:bg-gray-700"
                   >
                     {item.text}
                   </Link>
@@ -190,11 +193,13 @@ const Header = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: NavItem.length * 0.1 }}
+                className="w-full text-center"
               >
                 <Link
                   href="/dashboard"
                   onClick={() => setOpen(false)}
-                  className="w-full py-3 text-lg font-medium text-center text-white no-underline uppercase transition-colors duration-200 hover:bg-gray-700"
+                  style={{ borderBottom: "1px solid #fff" }}
+                  className="block w-full py-3 text-lg font-medium text-center text-white no-underline uppercase transition-colors duration-200 border-b border-gray-600 hover:bg-gray-700"
                 >
                   dashboard
                 </Link>
