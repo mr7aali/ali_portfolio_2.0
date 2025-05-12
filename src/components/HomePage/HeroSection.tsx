@@ -119,7 +119,7 @@ const HeroSection: React.FC = () => {
             animate="visible"
             style={{ minHeight: "16rem" }} // Ensure space for spread layout
           >
-            <div className="flex items-center justify-center w-full">
+            <div className="flex items-center justify-center w-full mt-12">
               {/* Background Card 1 */}
               <AnimatePresence>
                 <motion.div
