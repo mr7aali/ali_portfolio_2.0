@@ -18,16 +18,23 @@ const textVariants = {
 };
 
 const imageVariants = {
-  hidden: { opacity: 0, scale: 0.9, rotate: -10 },
+  hidden: { opacity: 0, scale: 0.8, y: 20 },
   visible: {
     opacity: 1,
     scale: 1,
-    rotate: 0,
-    transition: { duration: 0.8, ease: "easeOut" },
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
+      type: "spring",
+      stiffness: 100,
+    },
   },
   hover: {
     scale: 1.05,
-    boxShadow: "0 8px 32px rgba(79, 70, 229, 0.4)",
+    rotate: 3,
+    boxShadow:
+      "0 8px 32px rgba(79, 70, 229, 0.3), 0 0 20px rgba(79, 70, 229, 0.2)",
     transition: { duration: 0.3 },
   },
 };
@@ -42,25 +49,24 @@ const HeroSection = () => {
           animate="visible"
           variants={containerVariants}
         >
-          {/* Profile Photo */}
+          {/* Profile Picture */}
           <motion.div
             className="flex justify-center mb-8"
             initial="hidden"
             animate="visible"
-            variants={imageVariants}
             whileHover="hover"
           >
-            <div
-              className="w-48 h-48 bg-center bg-cover sm:h-64 sm:w-64 lg:h-72 lg:w-72"
+            <motion.div
+              className="w-64 h-64 bg-center bg-cover border-4 border-white rounded-lg"
+              variants={imageVariants}
               style={{
                 backgroundImage:
                   "url('https://i.ibb.co/j3fDZYd/IMG-20231018-160911.jpg')",
-                clipPath:
-                  "polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%)",
                 boxShadow:
                   "0 4px 16px rgba(0, 0, 0, 0.2), 0 0 20px rgba(79, 70, 229, 0.2)",
+                border: "1px solid red",
               }}
-            ></div>
+            ></motion.div>
           </motion.div>
 
           {/* Greeting and Name */}
