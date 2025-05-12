@@ -1,7 +1,8 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 import Link from "next/link";
+import { useState } from "react";
 
 // Animation variants for smooth transitions
 const containerVariants = {
@@ -17,11 +18,41 @@ const textVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
-const imageVariants = {
-  hidden: { opacity: 0, scale: 0.8, y: 20 },
+const cardVariants = {
+  hidden: { opacity: 0, x: -10, rotate: -5 },
+  visible: (index: number) => ({
+    opacity: 0.7,
+    x: index === 1 ? -10 : 10,
+    y: index === 1 ? 10 : -10,
+    rotate: index === 1 ? -5 : 5,
+    transition: { duration: 0.6, delay: 0.2 },
+  }),
+  spread: (index: number) => ({
+    opacity: 0.9,
+    x: index === 1 ? -280 : 280, // Left for card1, right for card2
+    y: 0,
+    rotate: 0,
+    transition: {
+      duration: 0.6,
+      type: "spring",
+      stiffness: 80,
+      damping: 15,
+      delay: index === 1 ? 0 : 0.2, // Staggered animation
+    },
+  }),
+  stacked: (index: number) => ({
+    opacity: 0.7,
+    x: index === 1 ? -10 : 10,
+    y: index === 1 ? 10 : -10,
+    rotate: index === 1 ? -5 : 5,
+    transition: { duration: 0.5 },
+  }),
+};
+
+const profileVariants = {
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
-    scale: 1,
     y: 0,
     transition: {
       duration: 0.8,
@@ -30,30 +61,52 @@ const imageVariants = {
       stiffness: 100,
     },
   },
-  hover: {
-    scale: 1.05,
-    rotate: 3,
-    boxShadow:
-      "0 8px 32px rgba(79, 70, 229, 0.3), 0 0 20px rgba(79, 70, 229, 0.2)",
-    transition: { duration: 0.3 },
+  spread: {
+    opacity: 1,
+    x: 0, // Profile picture stays centered
+    y: 0,
+    rotate: 0,
+    transition: { duration: 0.6, type: "spring", stiffness: 80, damping: 15 },
   },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, x: -10, rotate: -5 },
-  visible: {
-    opacity: 0.7,
+  stacked: {
+    opacity: 1,
     x: 0,
-    rotate: -5,
-    transition: { duration: 0.6, delay: 0.2 },
+    y: 0,
+    rotate: 0,
+    transition: { duration: 0.5 },
   },
-  hover: { scale: 1.03, rotate: -3, transition: { duration: 0.3 } },
 };
 
-const HeroSection = () => {
+const HeroSection: React.FC = () => {
+  const [isSpread, setIsSpread] = useState<boolean>(false);
+
+  const handleContainerHoverStart = (): void => {
+    setIsSpread(true);
+  };
+
+  const handleContainerHoverEnd = (): void => {
+    setIsSpread(false);
+  };
+
+  const handleContainerTouchStart = (): void => {
+    setIsSpread(true);
+  };
+
+  const handleContainerTouchEnd = (): void => {
+    setIsSpread(false);
+  };
+
   return (
     <section className="relative flex items-center justify-center min-h-screen py-12 overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-purple-50 sm:py-20">
-      <div className="max-w-5xl px-4 mx-auto sm:px-6 lg:px-8">
+      <motion.div
+        id="if-i-hover-then-the-functionality-will-happanes"
+        className="max-w-5xl px-4 mx-auto sm:px-6 lg:px-8"
+        style={{ border: "1px solid red" }}
+        onHoverStart={handleContainerHoverStart}
+        onHoverEnd={handleContainerHoverEnd}
+        onTouchStart={handleContainerTouchStart}
+        onTouchEnd={handleContainerTouchEnd}
+      >
         <motion.div
           className="text-center"
           initial="hidden"
@@ -65,39 +118,57 @@ const HeroSection = () => {
             className="relative flex justify-center mb-8"
             initial="hidden"
             animate="visible"
-            whileHover="hover"
+            style={{ minHeight: "16rem" }} // Ensure space for spread layout
           >
-            {/* Background Card 1 */}
-            <motion.div
-              className="absolute w-64 h-64 rounded-lg shadow-md bg-red-950"
-              variants={cardVariants}
-              style={{
-                transform: "translate(-10px, 10px) rotate(-5deg)",
-                zIndex: 1,
-              }}
-            ></motion.div>
-            {/* Background Card 2 */}
-            <motion.div
-              className="absolute w-64 h-64 bg-[#4f46e5] rounded-lg shadow-md"
-              variants={cardVariants}
-              style={{
-                transform: "translate(10px, -10px) rotate(5deg)",
-                zIndex: 1,
-              }}
-            ></motion.div>
-            {/* Profile Picture */}
-            <motion.div
-              id="update"
-              className="relative w-64 h-64 bg-center bg-cover border-4 border-white rounded-lg cursor-pointer"
-              variants={imageVariants}
-              style={{
-                backgroundImage:
-                  "url('https://i.ibb.co/j3fDZYd/IMG-20231018-160911.jpg')",
-                boxShadow:
-                  "0 4px 16px rgba(0, 0, 0, 0.2), 0 0 20px rgba(79, 70, 229, 0.2)",
-                zIndex: 2,
-              }}
-            ></motion.div>
+            <div className="flex items-center justify-center w-full">
+              {/* Background Card 1 */}
+              <AnimatePresence>
+                <motion.div
+                  className="absolute w-64 h-64 rounded-lg shadow-md cursor-pointer bg-red-950"
+                  variants={cardVariants}
+                  initial="hidden"
+                  animate={isSpread ? "spread" : "stacked"}
+                  custom={1} // Index for positioning
+                  style={{
+                    transform: isSpread
+                      ? "none"
+                      : "translate(-10px, 10px) rotate(-5deg)",
+                    zIndex: 1,
+                  }}
+                ></motion.div>
+              </AnimatePresence>
+              {/* Background Card 2 */}
+              <AnimatePresence>
+                <motion.div
+                  className="absolute w-64 h-64 bg-[#4f46e5] rounded-lg shadow-md cursor-pointer"
+                  variants={cardVariants}
+                  initial="hidden"
+                  animate={isSpread ? "spread" : "stacked"}
+                  custom={2} // Index for positioning
+                  style={{
+                    transform: isSpread
+                      ? "none"
+                      : "translate(10px, -10px) rotate(5deg)",
+                    zIndex: 1,
+                  }}
+                ></motion.div>
+              </AnimatePresence>
+              {/* Profile Picture */}
+              <motion.div
+                id="update"
+                className="relative w-64 h-64 bg-center bg-cover rounded-lg cursor-pointer"
+                variants={profileVariants}
+                initial="hidden"
+                animate={isSpread ? "spread" : "stacked"}
+                style={{
+                  backgroundImage:
+                    "url('https://i.ibb.co/j3fDZYd/IMG-20231018-160911.jpg')",
+                  boxShadow:
+                    "0 4px 16px rgba(0, 0, 0, 0.2), 0 0 20px rgba(79, 70, 229, 0.2)",
+                  zIndex: 2,
+                }}
+              ></motion.div>
+            </div>
           </motion.div>
 
           {/* Greeting and Name */}
@@ -105,7 +176,7 @@ const HeroSection = () => {
             className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl"
             variants={textVariants}
           >
-            Hey, I&apos;m <span className="text-indigo-600">Sheikh Aali</span>
+            Hey, I'm <span className="text-indigo-600">Sheikh Aali</span>
           </motion.h1>
 
           {/* Typewriter Effect */}
@@ -136,11 +207,10 @@ const HeroSection = () => {
             className="max-w-3xl mx-auto mt-6 text-lg leading-relaxed text-gray-600 sm:text-xl"
             variants={textVariants}
           >
-            Based in Dhaka, Bangladesh 📍, I&apos;m a passionate developer
-            crafting seamless, dynamic web experiences. From sleek e-commerce
-            platforms to interactive applications, I turn ideas into reality.
-            Dive into my portfolio and let’s create something extraordinary
-            together!
+            Based in Dhaka, Bangladesh 📍, I'm a passionate developer crafting
+            seamless, dynamic web experiences. From sleek e-commerce platforms
+            to interactive applications, I turn ideas into reality. Dive into my
+            portfolio and let’s create something extraordinary together!
           </motion.p>
 
           {/* Call-to-Action Buttons */}
@@ -163,7 +233,7 @@ const HeroSection = () => {
             </a>
           </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* Decorative Background Elements */}
       <div className="absolute inset-0 overflow-hidden -z-10">
