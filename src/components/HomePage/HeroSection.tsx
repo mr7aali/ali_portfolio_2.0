@@ -69,7 +69,7 @@ const HeroSection = () => {
           >
             {/* Background Card 1 */}
             <motion.div
-              className="absolute w-64 h-64 bg-indigo-100 rounded-lg shadow-md"
+              className="absolute w-64 h-64 rounded-lg shadow-md bg-red-950"
               variants={cardVariants}
               style={{
                 transform: "translate(-10px, 10px) rotate(-5deg)",
@@ -78,7 +78,7 @@ const HeroSection = () => {
             ></motion.div>
             {/* Background Card 2 */}
             <motion.div
-              className="absolute w-64 h-64 bg-purple-100 rounded-lg shadow-md"
+              className="absolute w-64 h-64 bg-[#4f46e5] rounded-lg shadow-md"
               variants={cardVariants}
               style={{
                 transform: "translate(10px, -10px) rotate(5deg)",
