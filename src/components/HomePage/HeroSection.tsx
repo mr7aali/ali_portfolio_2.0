@@ -57,7 +57,7 @@ const HeroSection = () => {
             whileHover="hover"
           >
             <motion.div
-              className="w-64 h-64 bg-center bg-cover border-4 border-white rounded-lg"
+              className="w-64 h-64 bg-center bg-cover border-4 border-white rounded-lg cursor-pointer"
               variants={imageVariants}
               style={{
                 backgroundImage:
